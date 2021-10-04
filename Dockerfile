@@ -4,58 +4,62 @@ FROM ubuntu:20.04
 # Needed so that tzdata install will be non-interactive
 # https://stackoverflow.com/questions/44331836/apt-get-install-tzdata-noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update
-RUN apt install -y git libgtest-dev cmake wget unzip libtinfo-dev libz-dev libcurl4-openssl-dev libopenblas-dev g++ sudo python3-dev libclang-dev curl lsb-release wget software-properties-common python3-pip
+RUN apt update && \
+	apt install -y git libgtest-dev cmake wget unzip libtinfo-dev libz-dev libcurl4-openssl-dev libopenblas-dev g++ sudo python3-dev libclang-dev curl lsb-release wget software-properties-common python3-pip
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:$PATH"
 
 # Install LLVM
-RUN wget https://apt.llvm.org/llvm.sh
-RUN chmod +x llvm.sh
-RUN sudo ./llvm.sh 14
+#RUN wget https://apt.llvm.org/llvm.sh
+#RUN chmod +x llvm.sh
+#RUN sudo ./llvm.sh 12
 
 # Needed by TVM Rust build process
-ENV LLVM_CONFIG_PATH=/usr/lib/llvm-14/bin/llvm-config
+#ENV LLVM_CONFIG_PATH=/usr/lib/llvm-12/bin/llvm-config
 
 # Build TVM with Rust bindings
 # TODO(@gussmith23) Switch this to TVM mainline
 # once https://github.com/apache/incubator-tvm/pull/6563 is merged
-WORKDIR /root
-ADD tvm tvm 
-WORKDIR /root/tvm
-RUN echo 'set(USE_LLVM $ENV{LLVM_CONFIG_PATH})' >> config.cmake
-RUN echo 'set(USE_RPC ON)' >> config.cmake
-RUN echo 'set(USE_SORT ON)' >> config.cmake
-RUN echo 'set(USE_GRAPH_RUNTIME ON)' >> config.cmake
-RUN echo 'set(USE_BLAS openblas)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake
-#RUN echo 'set(CMAKE_BUILD_TYPE Debug)' >> config.cmake
-ARG tvm_build_threads=2
-RUN bash -c \
-     "mkdir -p build && \
-     cd build && \
-     cmake .. && \
-     make -j${tvm_build_threads}"
-
-# Help the system find the libtvm library and TVM Python library
-ENV TVM_HOME=/root/tvm
-ENV PYTHONPATH="$TVM_HOME/python:$TVM_HOME/topi/python:${PYTHONPATH}"
-ENV LD_LIBRARY_PATH="$TVM_HOME/build/"
+#WORKDIR /root
+#ADD tvm tvm 
+#WORKDIR /root/tvm
+#RUN echo 'set(USE_LLVM $ENV{LLVM_CONFIG_PATH})' >> config.cmake
+#RUN echo 'set(USE_RPC ON)' >> config.cmake
+#RUN echo 'set(USE_SORT ON)' >> config.cmake
+#RUN echo 'set(USE_GRAPH_RUNTIME ON)' >> config.cmake
+#RUN echo 'set(USE_BLAS openblas)' >> config.cmake
+#RUN echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake
+#RUN echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake
+#RUN echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake
+##RUN echo 'set(CMAKE_BUILD_TYPE Debug)' >> config.cmake
+#ARG tvm_build_threads=2
+#RUN bash -c \
+#     "mkdir -p build && \
+#     cd build && \
+#     cmake .. && \
+#     make -j${tvm_build_threads}"
+#
+## Help the system find the libtvm library and TVM Python library
+#ENV TVM_HOME=/root/tvm
+#ENV PYTHONPATH="$TVM_HOME/python:$TVM_HOME/topi/python:${PYTHONPATH}"
+#ENV LD_LIBRARY_PATH="$TVM_HOME/build/"
 
 # Set up Python
 RUN pip3 install --upgrade pip
 COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r requirements.txt
 
+# TODO(gus) move up
+RUN apt install -y libssl-dev pkg-config
+RUN rustup default nightly
+
 # Build Glenside with all features
 WORKDIR /root
 ADD glenside glenside
 WORKDIR /root/glenside
-RUN cargo build
+RUN --mount=type=ssh cargo build --no-default-features --features "tvm"
 
 # At this point, you should be able to build Glenside with whatever features you
 # want!
