@@ -14,15 +14,14 @@ RUN apt update && \
     libssl-dev \
     pkg-config \
     python3-dev \
+    sudo \
     wget
 #    libgtest-dev \
-#    wget \
 #    unzip \
 #    libtinfo-dev \
 #    libz-dev \
 #    libcurl4-openssl-dev \
 #    libopenblas-dev \
-#    sudo \
 #    lsb-release \
 #    software-properties-common \
 #    python3-pip \
