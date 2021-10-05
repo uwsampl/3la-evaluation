@@ -1,6 +1,3 @@
-[submodule "tvm"]
-	path = tvm
-	url = git@github.com:uwsampl/3la-tvm
 [submodule "glenside"]
 	path = glenside
 	url = git@github.com:gussmith23/glenside
