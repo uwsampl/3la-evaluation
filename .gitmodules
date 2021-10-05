@@ -1,3 +1,6 @@
 [submodule "glenside"]
 	path = glenside
 	url = git@github.com:gussmith23/glenside
+[submodule "3la-tvm"]
+	path = 3la-tvm
+	url = ssh://git@github.com/uwsampl/3la-tvm
