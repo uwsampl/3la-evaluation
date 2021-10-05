@@ -38,6 +38,7 @@ jobs:
         DOCKER_BUILDKIT=1 docker build \
           . \
           --file Dockerfile \
+          --build-arg=TVM_BUILD_JOBS=16 \
           --ssh default \
           --no-cache \
           --tag $TAG
