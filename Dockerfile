@@ -11,20 +11,20 @@ RUN apt update && \
     g++ \
     git \
     libclang-dev \
+    libcurl4-openssl-dev \
+    libgtest-dev \
+    libopenblas-dev \
     libssl-dev \
+    libtinfo-dev \
+    libz-dev \
+    lsb-release \
     pkg-config \
     python3-dev \
+    python3-pip \
+    software-properties-common \
     sudo \
+    unzip \
     wget
-#    libgtest-dev \
-#    unzip \
-#    libtinfo-dev \
-#    libz-dev \
-#    libcurl4-openssl-dev \
-#    libopenblas-dev \
-#    lsb-release \
-#    software-properties-common \
-#    python3-pip \
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
