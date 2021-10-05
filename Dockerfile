@@ -13,7 +13,8 @@ RUN apt update && \
     libclang-dev \
     libssl-dev \
     pkg-config \
-    python3-dev
+    python3-dev \
+    wget
 #    libgtest-dev \
 #    wget \
 #    unzip \
@@ -23,7 +24,6 @@ RUN apt update && \
 #    libopenblas-dev \
 #    sudo \
 #    lsb-release \
-#    wget \
 #    software-properties-common \
 #    python3-pip \
 
@@ -48,9 +48,6 @@ ENV LLVM_CONFIG_PATH=/usr/lib/llvm-10/bin/llvm-config
 WORKDIR /root
 ADD 3la-tvm tvm
 WORKDIR /root/tvm
-RUN git fetch
-RUN git checkout accelerator-call-op
-RUN git submodule sync && git submodule update
 RUN echo 'set(USE_LLVM $ENV{LLVM_CONFIG_PATH})' >> config.cmake
 RUN echo 'set(USE_RPC ON)' >> config.cmake
 RUN echo 'set(USE_SORT ON)' >> config.cmake
