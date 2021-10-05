@@ -7,7 +7,8 @@ FROM ubuntu:20.04
 RUN apt update && \
   apt install -y \
     curl \
-    g++
+    g++ \
+    python3-dev
 #    git \
 #    libgtest-dev \
 #    cmake \
@@ -18,7 +19,6 @@ RUN apt update && \
 #    libcurl4-openssl-dev \
 #    libopenblas-dev \
 #    sudo \
-#    python3-dev \
 #    libclang-dev \
 #    lsb-release \
 #    wget \
