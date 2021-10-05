@@ -10,6 +10,7 @@ RUN apt update && \
     curl \
     g++ \
     git \
+    libclang-dev \
     libssl-dev \
     pkg-config \
     python3-dev
@@ -21,7 +22,6 @@ RUN apt update && \
 #    libcurl4-openssl-dev \
 #    libopenblas-dev \
 #    sudo \
-#    libclang-dev \
 #    lsb-release \
 #    wget \
 #    software-properties-common \
