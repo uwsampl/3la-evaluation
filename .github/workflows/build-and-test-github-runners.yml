@@ -20,4 +20,15 @@ jobs:
         submodules: recursive
         ssh-key: ${{ secrets.SSH_KEY }}
     - name: Build the Docker image
-      run: DOCKER_BUILDKIT=1 docker build --tag 3la-docker:$(date +%s) .
+      id: build
+      run: |
+        export TAG=3la-docker:$(date +%s)
+        echo "::set-output name=TAG::$TAG"
+        DOCKER_BUILDKIT=1 docker build \
+          . \
+          --file Dockerfile \
+          --ssh default \
+          --no-cache \
+          --tag $TAG
+    - name: Run tests
+      run: docker run ${{ steps.build.outputs.TAG }} cargo test --no-default-features --features "tvm"
