@@ -15,6 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # ssh-agent needs to be started so that docker build can use SSH. We use SSH
+    # when cargo is building glenside, as cargo needs to clone the private
+    # 3la-tvm repo (for the Rust TVM bindings.)
+    - name: Start ssh-agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+      ssh-private-key: ${{ secrets.SSH_KEY }}
     - uses: actions/checkout@v2
       with:
         submodules: recursive
@@ -24,9 +31,10 @@ jobs:
       run: |
         export TAG=3la-docker:$(date +%s)
         echo "::set-output name=TAG::$TAG"
-        docker build \
+        DOCKER_BUILDKIT=1 docker build \
           . \
           --file Dockerfile \
+          --ssh default \
           --no-cache \
           --tag $TAG
     - name: Run tests
