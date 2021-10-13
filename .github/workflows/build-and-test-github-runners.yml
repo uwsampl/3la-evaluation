@@ -24,10 +24,9 @@ jobs:
       run: |
         export TAG=3la-docker:$(date +%s)
         echo "::set-output name=TAG::$TAG"
-        DOCKER_BUILDKIT=1 docker build \
+        docker build \
           . \
           --file Dockerfile \
-          --ssh default \
           --no-cache \
           --tag $TAG
     - name: Run tests
