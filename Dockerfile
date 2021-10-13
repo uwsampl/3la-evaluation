@@ -90,9 +90,8 @@ ADD ./inference ./inference
 WORKDIR /root/inference/language/bert/
 RUN mkdir build
 RUN	cp ../../mlperf.conf build/mlperf.conf
+RUN make download_data
 RUN make download_model
-# This takes a while, so I don't want to do it unless we need to.
-# RUN make download_data
 
 WORKDIR /root
 ADD ./bert_onnx.py ./bert_onnx.py
