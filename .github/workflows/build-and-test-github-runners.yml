@@ -21,7 +21,7 @@ jobs:
     - name: Start ssh-agent
       uses: webfactory/ssh-agent@v0.5.3
       with:
-      ssh-private-key: ${{ secrets.SSH_KEY }}
+        ssh-private-key: ${{ secrets.SSH_KEY }}
     - uses: actions/checkout@v2
       with:
         submodules: recursive
