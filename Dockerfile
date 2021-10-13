@@ -78,3 +78,6 @@ WORKDIR /root
 ADD glenside glenside
 WORKDIR /root/glenside
 RUN --mount=type=ssh cargo build --no-default-features --features "tvm"
+
+WORKDIR /root
+ADD run.sh run.sh
