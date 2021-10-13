@@ -30,4 +30,4 @@ jobs:
           --no-cache \
           --tag $TAG
     - name: Run tests
-      run: docker run ${{ steps.build.outputs.TAG }} cargo test --no-default-features --features "tvm"
+      run: docker run ${{ steps.build.outputs.TAG }} cargo test --no-default-features --features "tvm run-on-github-actions"
