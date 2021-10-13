@@ -71,7 +71,9 @@ ENV LD_LIBRARY_PATH="$TVM_HOME/build/"
 # Set up Python
 RUN pip3 install --upgrade pip
 COPY ./requirements.txt ./requirements.txt
-RUN pip3 install -r requirements.txt
+# --ignore-installed to fix a weird bug when installing PyYAML, see:
+# https://github.com/pypa/pip/issues/5247.
+RUN pip3 install -r requirements.txt --ignore-installed
 
 # Build Glenside with all features
 WORKDIR /root
