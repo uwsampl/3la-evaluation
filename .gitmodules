@@ -4,3 +4,6 @@
 [submodule "3la-tvm"]
 	path = 3la-tvm
 	url = ssh://git@github.com/uwsampl/3la-tvm
+[submodule "inference"]
+	path = inference
+	url = https://github.com/mlcommons/inference
