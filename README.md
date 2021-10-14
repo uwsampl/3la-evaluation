@@ -1,5 +1,8 @@
 # 3LA PLDI Evaluation
 
+[![Build and test on self-hosted](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-self-hosted.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-self-hosted.yml)
+[![Build and test on GitHub runners](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-github-runners.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-github-runners.yml)
+
 In accordance with
   [*lex Lyubomiricus,*](https://homes.cs.washington.edu/~sslyu/lex.html)
   this repo
