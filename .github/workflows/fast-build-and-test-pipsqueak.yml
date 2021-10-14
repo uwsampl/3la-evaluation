@@ -1,0 +1,46 @@
+# This workflow uses pipsqueak's Docker cache to do fast incremental build and
+# testing runs. This workflow is meant to run fast to get results quickly after
+# pushing commits or opening a PR. A more thorough build-from-scratch-and-test
+# is run nightly.
+name: Build and test on pipsqueak (fast)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  cleaner:
+    runs-on: self-hosted
+    steps:
+      - name: Runner workspace path
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+
+  build-and-test:
+    # Make sure we clean up the directory first. The runner does not remove
+    # files from old runs.
+    needs: cleaner
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        token: ${{ secrets.PAT }}
+
+    - name: Build the Docker image
+      id: build
+      run: |
+        export TAG=3la-docker:$(date +%s)
+        echo "::set-output name=TAG::$TAG"
+        DOCKER_BUILDKIT=1 docker build \
+          . \
+          --file Dockerfile \
+          --build-arg=TVM_BUILD_JOBS=16 \
+          --ssh default \
+          --tag $TAG
+    - name: Run tests
+      run: docker run ${{ steps.build.outputs.TAG }} ./run.sh

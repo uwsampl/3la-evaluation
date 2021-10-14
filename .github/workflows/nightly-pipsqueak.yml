@@ -1,13 +1,10 @@
-# This workflow builds the Docker image on pipsqueak.
-name: Build and test on self-hosted
+# Builds the Docker from scratch and runs tests (on pipsqueak).
+name: Nightly (pipsqueak)
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
   schedule:
-    - cron: '0 20 * * *'
+    # 1am PDT.
+    - cron: '0 8 * * *'
 
 jobs:
 
@@ -38,7 +35,7 @@ jobs:
         DOCKER_BUILDKIT=1 docker build \
           . \
           --file Dockerfile \
-          --build-arg=TVM_BUILD_JOBS=16 \
+          --build-arg=TVM_BUILD_JOBS=32 \
           --ssh default \
           --no-cache \
           --tag $TAG
