@@ -1,7 +1,7 @@
 # 3LA PLDI Evaluation
 
-[![Build and test on self-hosted](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-self-hosted.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-self-hosted.yml)
-[![Build and test on GitHub runners](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-github-runners.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/build-and-test-github-runners.yml)
+[![Nightly (pipsqueak)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-pipsqueak.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-pipsqueak.yml)
+[![Nightly (GitHub runners)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-github-runners.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-github-runners.yml)
 
 In accordance with
   [*lex Lyubomiricus,*](https://homes.cs.washington.edu/~sslyu/lex.html)
@@ -20,4 +20,8 @@ All components
   should be version-controlled
   (e.g. by pointing to specific commits
     using git submodules.)
-  
+The entire repository
+  is built and tested
+  nightly
+  on GitHub's machines
+  and our own.
