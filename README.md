@@ -25,3 +25,10 @@ The entire repository
   nightly
   on GitHub's machines
   and our own.
+
+## Build and Run
+
+To build, you need to use Docker's BuildKit option, so use a command like the following:
+```
+DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --build-arg tvm_build_threads=32
+```
