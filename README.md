@@ -30,7 +30,7 @@ The entire repository
 
 To build, 
   you need to use Docker's BuildKit option, 
-  so you need to set the DOCKER_BUILDKIT flag to 1. 
+  so you need to set the `DOCKER_BUILDKIT` flag to 1. 
 You also need 
   to have an ssh agent running 
   and give the `--ssh` flag to access our private repos.
@@ -38,5 +38,14 @@ The below commands should work assuming you have the appropriate ssh credentials
 ```
 eval `ssh-agent -s`
 ssh-add
-DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default --build-arg tvm_build_threads=32
+DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default
 ```
+If you
+  would like to speed up
+  the build of TVM,
+  you can pass
+  `--build-arg tvm_build_threads=<threads>`
+  to `docker build`,
+  where `<threads>`
+  is the number of parallel threads
+  you'd like to use.
