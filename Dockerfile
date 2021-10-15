@@ -79,6 +79,7 @@ RUN pip3 install -r requirements.txt --ignore-installed
 WORKDIR /root
 ADD glenside glenside
 WORKDIR /root/glenside
+ENV GLENSIDE_HOME=/root/glenside
 RUN --mount=type=ssh cargo build --no-default-features --features "tvm"
 
 WORKDIR /root
