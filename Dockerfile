@@ -104,3 +104,6 @@ ADD run.sh run.sh
 
 WORKDIR /root
 ADD ./bert_onnx.py ./bert_onnx.py
+
+WORKDIR /root
+ADD ./e2e ./e2e
