@@ -28,6 +28,7 @@ RUN apt update && \
 
 # Set up MLPerf inference. (Downloads take a while, so this should be up near
 # the top.)
+ the pipeline)
 WORKDIR /root
 ADD ./inference ./inference
 WORKDIR /root/inference/language/bert/
