@@ -13,6 +13,6 @@ python3 bert_onnx.py
 
 # Test end-to-end run of ResMLP
 cd e2e/resmlp
-python3 trial.py --num-images 5
+python3 trial.py --num-images 5 --use-accelerators
 python3 digest.py
 cd ../..
