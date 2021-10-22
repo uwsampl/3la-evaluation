@@ -47,7 +47,7 @@ def init_net(params_path):
                  num_classes=len(CLASSES))
     if not os.path.exists(params_path):
         raise Exception("Missing trained model!")
-    net.load_state_dict(torch.load(params_path))
+    net.load_state_dict(torch.load(params_path, map_location=torch.device('cpu')))
     return net
 
 
