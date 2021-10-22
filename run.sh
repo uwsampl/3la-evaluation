@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Test the exact matcher in TVM.
 # TODO(@gussmith23) Add more invocations of TVM tests.
