@@ -107,3 +107,8 @@ ADD ./bert_onnx.py ./bert_onnx.py
 
 WORKDIR /root
 ADD ./e2e ./e2e
+
+WORKDIR /root
+ADD ./flexmatch ./flexmatch
+# need to have flexmatch in the environment
+ENV PYTHONPATH="/flexmatch/:{$PYTHONPATH}"
