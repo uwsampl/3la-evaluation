@@ -1,5 +1,5 @@
 antlr4-python3-runtime==4.7.2
-attrs==21.2.0
+attrs>=19.1.0
 boto3==1.18.48
 botocore==1.21.48
 certifi==2021.5.30
