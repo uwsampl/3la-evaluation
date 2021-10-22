@@ -17,6 +17,8 @@ import tvm.testing
 from tvm.contrib import graph_executor
 from tvm.relay import ExprMutator
 
+from megraph.language import RecExprCompiler
+
 # also adapted from https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
 
 CLASSES = ('plane', 'car', 'bird', 'cat',
