@@ -111,4 +111,4 @@ ADD ./e2e ./e2e
 WORKDIR /root
 ADD ./flexmatch ./flexmatch
 # need to have flexmatch in the environment
-ENV PYTHONPATH="/flexmatch/:{$PYTHONPATH}"
+ENV PYTHONPATH="/root/flexmatch/:${PYTHONPATH}"
