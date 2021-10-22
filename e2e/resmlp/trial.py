@@ -107,7 +107,7 @@ def compile_into_glenside(net):
             return var
 
     mutator = RenameMutator()
-    mod["main"] = mutator.visit(mod["main"])
+    mod = tvm.ir.IRModule.from_expr(mutator.visit(mod["main"]))
     # restore type annotations
     mod = relay.transform.InferType()(mod)
     # dump to glenside/models/resmlp.relay
