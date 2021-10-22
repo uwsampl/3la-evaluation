@@ -118,7 +118,9 @@ def compile_into_glenside(net):
 
     # now we invoke the glenside resmlp test to apply rewrites
     start = time.time()
-    subprocess.run(["cargo", "test", "test_resmlp"], cwd=glenside_home)
+    subprocess.run(["cargo", "test", "test_resmlp",
+                    "--no-default-features", "--features", "tvm"],
+                   cwd=glenside_home)
     end = time.time()
     print(f"Glenside total time: {end - start}")
     result_file = os.path.join(glenside_home, "models", "resmlp_dump.json")
