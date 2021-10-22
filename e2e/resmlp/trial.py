@@ -174,11 +174,9 @@ def compare_on_data(net, testloader, num_images, use_accelerators):
     compile_end = time.time()
     print(f"Relay compile time: {compile_end - compile_start}")
 
-    accel_mod, accel_params = compile_into_glenside(net)
-    accel_model = compile_into_tvm(accel_mod, accel_params)
-
     if use_accelerators:
-        print(f"Accelerator compile time: ")
+        accel_mod, accel_params = compile_into_glenside(net)
+        accel_model = compile_into_tvm(accel_mod, accel_params)
 
     # numerical results:
     #   number of differing elements (PT vs Relay)
