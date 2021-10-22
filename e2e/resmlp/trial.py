@@ -59,14 +59,19 @@ def get_trace(net):
     return trace
 
 
-def compile_into_tvm(net):
+def import_into_relay(net):
     trace = get_trace(net)
     input_names = [f"{INPUT_PREFIX}_0"]
     input_shapes = [(f"{INPUT_PREFIX}_0", (BATCH_SIZE, 3, 32, 32))]
-    custom_convert_map = 0
+    custom_convert_map = {}
     mod, params = relay.frontend.from_pytorch(trace, input_shapes, custom_convert_map)
     for arg in mod["main"].params[: len(input_names)]:
         assert arg.name_hint in input_names
+    return mod, params
+
+
+def compile_into_tvm(net):
+    mod, params = import_into_relay(net)
 
     with tvm.transform.PassContext(opt_level=3):
         relay_graph, relay_lib, relay_params = relay.build(
@@ -75,7 +80,6 @@ def compile_into_tvm(net):
     relay_model = graph_executor.create(relay_graph, relay_lib, tvm.cpu(0))
     relay_model.set_input(**relay_params)
     return relay_model
-    # return relay_graph, relay_lib, relay_params
 
 
 def execute_tvm_model(relay_model, images):
