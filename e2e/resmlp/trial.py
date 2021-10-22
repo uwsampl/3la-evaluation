@@ -1,6 +1,7 @@
 import argparse
 import csv
 import os
+import subprocess
 import time
 
 import numpy as np
@@ -14,6 +15,7 @@ import tvm
 from tvm import relay
 import tvm.testing
 from tvm.contrib import graph_executor
+from tvm.relay import ExprMutator
 
 # also adapted from https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
 
@@ -70,9 +72,7 @@ def import_into_relay(net):
     return mod, params
 
 
-def compile_into_tvm(net):
-    mod, params = import_into_relay(net)
-
+def compile_into_tvm(mod, params):
     with tvm.transform.PassContext(opt_level=3):
         relay_graph, relay_lib, relay_params = relay.build(
             mod, target="llvm", params=params
@@ -80,6 +80,69 @@ def compile_into_tvm(net):
     relay_model = graph_executor.create(relay_graph, relay_lib, tvm.cpu(0))
     relay_model.set_input(**relay_params)
     return relay_model
+
+
+def compile_into_glenside(net):
+    mod, params = import_into_relay(net)
+    # weirdness due to hardcoded directories in the Glenside ResMLP test
+
+    # need to rename variables with dots in their names
+    # copied from flexmatch/demo/get_relay_model to avoid tight coupling with a demo script
+    class RenameMutator(ExprMutator):
+        def __init__(self):
+            super().__init__()
+            self.var_map = {}
+
+        def visit_var(self, var):
+            if var in self.var_map:
+                return self.var_map[var]
+
+            if "." in var.name_hint:
+                new_name = var.name_hint.replace(".", "_")
+                new_var = relay.Var(new_name, type_annotation=var.type_annotation)
+                self.var_map[var] = new_var
+                return new_var
+            return var
+
+    mutator = RenameMutator()
+    mod["main"] = mutator.visit(mod["main"])
+    # restore type annotations
+    mod = relay.transform.InferType()(mod)
+    # dump to glenside/models/resmlp.relay
+    # TODO: Don't use a hardcoded directory in the test file...
+    glenside_home = os.environ["GLENSIDE_HOME"]
+    with open(os.path.join(glenside_home, "models", "resmlp.relay"), "w") as fp:
+        fp.write(mod.astext())
+
+    # now we invoke the glenside resmlp test to apply rewrites
+    start = time.time()
+    subprocess.run(["cargo", "test", "test_resmlp"], cwd=glenside_home)
+    end = time.time()
+    print(f"Glenside total time: {end - start}")
+    result_file = os.path.join(glenside_home, "models", "resmlp_dump.json")
+    if not os.path.exists(result_file):
+        raise Exception("No rewrite results given")
+
+    # now we take the JSON dump and compile it back into Relay
+    with open(result_file, "r") as fp:
+        recexpr_json = json.load(fp)
+
+    compiler = RecExprCompiler({
+        "flex-linear": "ilaflex.linear"
+    }, {
+        "flex-linear": "ilaflex"
+    })
+    shape_dict = {}
+    for arg in mod["main"].params:
+        shape_dict[arg.name_hint] = tuple(arg.type_annotation.shape)
+
+    start = time.time()
+    expr = compiler.to_relay_expr(recexpr_json, shape_dict)
+    mod = tvm.ir.IRModule.from_expr(expr)
+    mod = relay.transform.InferType()(mod)
+    end = time.time()
+    print(f"RecExpr to Relay conversion time: {end-start}")
+    return mod, params
 
 
 def execute_tvm_model(relay_model, images):
@@ -105,10 +168,14 @@ def dump_to_csv(filename, fieldnames, data):
 
 
 def compare_on_data(net, testloader, num_images, use_accelerators):
+    mod, params = import_into_relay(net)
     compile_start = time.time()
-    relay_model = compile_into_tvm(net)
+    relay_model = compile_into_tvm(mod, params)
     compile_end = time.time()
     print(f"Relay compile time: {compile_end - compile_start}")
+
+    accel_mod, accel_params = compile_into_glenside(net)
+    accel_model = compile_into_tvm(accel_mod, accel_params)
 
     if use_accelerators:
         print(f"Accelerator compile time: ")
@@ -161,12 +228,16 @@ def compare_on_data(net, testloader, num_images, use_accelerators):
             # using a string None because of CSV serialization
             accel_preds = ["None"] * len(relay_preds)
             if use_accelerators:
-                raise NotImplementedError("Not implemented!")
+                accel_start = time.time()
+                accel_outputs = execute_tvm_model(accel_model, images)
+                _, accel_preds = torch.max(accel_outputs, 1)
+                accel_end = time.time()
+                accel_time = accel_end - accel_start
 
             pt_relay_diff = torch.abs(torch.flatten(pt_outputs - relay_outputs))
             relay_accel_diff = None
             if use_accelerators:
-                raise NotImplementedError("Not implemented")
+                relay_accel_diff = torch.abs(torch.flatten(accel_outpus - relay_outputs))
 
             numerical_results.append({
                 "n_diff_pt_relay": len(pt_relay_diff >= DIFF_THRESHOLD),
@@ -175,7 +246,7 @@ def compare_on_data(net, testloader, num_images, use_accelerators):
                 "max_diff_relay_accel": "None" if not use_accelerators else torch.max(relay_accel_diff).item(),
                 "pt_time": pt_time,
                 "relay_time": relay_time,
-                "accel_time": "None" if not use_accelerators else 0
+                "accel_time": "None" if not use_accelerators else accel_time
             })
 
             for label, pt_pred, relay_pred, accel_pred in zip(labels, pt_preds, relay_preds, accel_preds):
