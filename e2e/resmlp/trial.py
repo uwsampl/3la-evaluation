@@ -123,7 +123,7 @@ def compile_into_glenside(net):
                    cwd=glenside_home)
     end = time.time()
     print(f"Glenside total time: {end - start}")
-    result_file = os.path.join(glenside_home, "models", "resmlp_dump.json")
+    result_file = os.path.join(glenside_home, "models", "resmlp-dump.json")
     if not os.path.exists(result_file):
         raise Exception("No rewrite results given")
 
