@@ -90,7 +90,7 @@ def compile_into_glenside(net):
     # weirdness due to hardcoded directories in the Glenside ResMLP test
 
     # need to rename variables with dots in their names
-    # copied from flexmatch/demo/get_relay_model to avoid tight coupling with a demo script
+    # also the text format does not like variable names that start with numbers, so let's fix those
     class RenameMutator(ExprMutator):
         def __init__(self):
             super().__init__()
@@ -100,8 +100,12 @@ def compile_into_glenside(net):
             if var in self.var_map:
                 return self.var_map[var]
 
+            new_name = var.name_hint
+            if var.name_hint[0].isdigit():
+                new_name = f"v{new_name}"
             if "." in var.name_hint:
                 new_name = var.name_hint.replace(".", "_")
+            if new_name != var.name_hint:
                 new_var = relay.Var(new_name, type_annotation=var.type_annotation)
                 self.var_map[var] = new_var
                 return new_var
