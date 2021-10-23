@@ -72,6 +72,9 @@ RUN echo 'set(USE_BLAS openblas)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake
+RUN echo 'set(USE_ILAVTA ON)' >> config.cmake
+RUN echo 'set(USE_ILAFLEX ON)' >> config.cmake
+RUN echo 'set(USE_ILACNN ON)' >> config.cmake
 #RUN echo 'set(CMAKE_BUILD_TYPE Debug)' >> config.cmake
 ARG TVM_BUILD_JOBS=2
 RUN bash -c \
