@@ -76,7 +76,7 @@ def import_into_relay(net):
 
 
 def compile_into_tvm(mod, params):
-    with tvm.transform.PassContext(opt_level=3):
+    with tvm.transform.PassContext(opt_level=0):
         relay_graph, relay_lib, relay_params = relay.build(
             mod, target="llvm", params=params
         )
