@@ -86,7 +86,8 @@ RUN bash -c \
 
 # Help the system find the libtvm library and TVM Python library
 ENV TVM_HOME=/root/tvm
-ENV PYTHONPATH="$TVM_HOME/python:$TVM_HOME/topi/python:${PYTHONPATH}"
+ENV VTA_HW_PATH=$TVM_HOME/3rdparty/vta-hw
+ENV PYTHONPATH="$TVM_HOME/python:$TVM_HOME/vta/python:$TVM_HOME/topi/python:${PYTHONPATH}"
 ENV LD_LIBRARY_PATH="$TVM_HOME/build/"
 
 # Set up Python
