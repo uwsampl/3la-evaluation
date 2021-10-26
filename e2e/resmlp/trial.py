@@ -103,8 +103,8 @@ def compile_into_glenside(net):
             new_name = var.name_hint
             if var.name_hint[0].isdigit():
                 new_name = f"v{new_name}"
-            if "." in var.name_hint:
-                new_name = var.name_hint.replace(".", "_")
+            if "." in new_name:
+                new_name = new_name.replace(".", "_")
             if new_name != var.name_hint:
                 new_var = relay.Var(new_name, type_annotation=var.type_annotation)
                 self.var_map[var] = new_var
