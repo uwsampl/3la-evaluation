@@ -72,6 +72,7 @@ RUN echo 'set(USE_BLAS openblas)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake
 RUN echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake
+RUN echo 'set(USE_VTA_FSIM ON)' >> config.cmake
 RUN echo 'set(USE_ILAVTA_CODEGEN ON)' >> config.cmake
 RUN echo 'set(USE_ILAFLEX_CODEGEN ON)' >> config.cmake
 RUN echo 'set(USE_ILACNN_CODEGEN ON)' >> config.cmake
