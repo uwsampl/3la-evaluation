@@ -10,6 +10,7 @@ In accordance with
   for the UW PLSE portion
   of the 3LA project's
   PLDI push.
+It borrows heavily from [3la-integrate](https://github.com/PrincetonUniversity/3la-integrate).
 
 [`run.sh`](run.sh)
   should be a readable script
@@ -38,14 +39,7 @@ The below commands should work assuming you have the appropriate ssh credentials
 ```
 eval `ssh-agent -s`
 ssh-add
-DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default
+DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default --build-arg SSH_KEY="$(cat ~/.ssh/id_rsa)
 ```
-If you
-  would like to speed up
-  the build of TVM,
-  you can pass
-  `--build-arg tvm_build_threads=<threads>`
-  to `docker build`,
-  where `<threads>`
-  is the number of parallel threads
-  you'd like to use.
+(Yes, we are passing SSH keys twice. This is because the dockerfile pulls in git repos. 
+ In the future, we should make this more uniform by including all the private repos we want to use as submodules.)
