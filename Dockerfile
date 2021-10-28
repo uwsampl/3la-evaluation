@@ -47,7 +47,10 @@ ENV LLVM_CONFIG_PATH=/usr/lib/llvm-10/bin/llvm-config
 WORKDIR /root
 ADD 3la-tvm tvm
 WORKDIR /root/tvm
-RUN echo 'set(USE_LLVM $ENV{LLVM_CONFIG_PATH})' >> config.cmake
+# Note the --ignore-libllvm, necessary for fixing Rust bindings as mentioned
+# here:
+# https://discuss.tvm.apache.org/t/python-debugger-segfaults-with-tvm/843/9
+RUN echo 'set(USE_LLVM "$ENV{LLVM_CONFIG_PATH} --ignore-libllvm")' >> config.cmake
 RUN echo 'set(USE_RPC ON)' >> config.cmake
 RUN echo 'set(USE_SORT ON)' >> config.cmake
 RUN echo 'set(USE_GRAPH_RUNTIME ON)' >> config.cmake
