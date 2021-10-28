@@ -92,7 +92,7 @@ WORKDIR /root/inference/language/bert/
 RUN mkdir build
 RUN	cp ../../mlperf.conf build/mlperf.conf
 # Make wget quiet so as to not spam the output.
-RUN echo "quiet = on/off" >> /root/.wgetrc
+RUN echo "verbose = off" >> /root/.wgetrc
 RUN make download_data
 RUN make download_model
 
