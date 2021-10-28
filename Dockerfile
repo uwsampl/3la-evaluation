@@ -91,11 +91,10 @@ ADD ./inference ./inference
 WORKDIR /root/inference/language/bert/
 RUN mkdir build
 RUN	cp ../../mlperf.conf build/mlperf.conf
-# Temporarily alias wget to quiet the verbose output from downloading these files.
-RUN alias wget="wget -nv"
+# Make wget quiet so as to not spam the output.
+RUN echo "quiet = on/off" >> /root/.wgetrc
 RUN make download_data
 RUN make download_model
-RUN unalias wget
 
 WORKDIR /root
 ADD ./bert_onnx.py ./bert_onnx.py
