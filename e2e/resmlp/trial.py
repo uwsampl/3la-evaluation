@@ -91,6 +91,14 @@ def compile_into_glenside(net):
 
     # need to rename variables with dots in their names
     # also the text format does not like variable names that start with numbers, so let's fix those
+    def rename(name):
+        new_name = name
+        if name[0].isdigit():
+            new_name = f"v{new_name}"
+        if "." in new_name:
+            new_name = new_name.replace(".", "_")
+        return new_name
+
     class RenameMutator(ExprMutator):
         def __init__(self):
             super().__init__()
@@ -100,58 +108,55 @@ def compile_into_glenside(net):
             if var in self.var_map:
                 return self.var_map[var]
 
-            new_name = var.name_hint
-            if var.name_hint[0].isdigit():
-                new_name = f"v{new_name}"
-            if "." in new_name:
-                new_name = new_name.replace(".", "_")
+            new_name = rename(var.name_hint)
             if new_name != var.name_hint:
                 new_var = relay.Var(new_name, type_annotation=var.type_annotation)
                 self.var_map[var] = new_var
                 return new_var
             return var
 
+    # rename params accordingly
+    new_params = {rename(k): v for k, v in params.items()}
+
     mutator = RenameMutator()
     mod = tvm.ir.IRModule.from_expr(mutator.visit(mod["main"]))
     # restore type annotations
     mod = relay.transform.InferType()(mod)
-    # dump to glenside/models/resmlp.relay
-    # TODO: Don't use a hardcoded directory in the test file...
-    glenside_home = os.environ["GLENSIDE_HOME"]
-    with open(os.path.join(glenside_home, "models", "resmlp.relay"), "w") as fp:
+
+    # need to write the model to a file
+    flexmatch_home = os.environ["FLEXMATCH_HOME"]
+    model_path = os.path.abspath(os.path.join(os.getcwd(), "resmlp.relay"))
+    with open(model_path, "w") as fp:
         fp.write(mod.astext())
 
-    # now we invoke the glenside resmlp test to apply rewrites
+    # maybe we could make this a proper API to avoid calling Python from in here
     start = time.time()
-    subprocess.run(["cargo", "test", "test_resmlp",
-                    "--no-default-features", "--features", "tvm"],
-                   cwd=glenside_home)
+    flexmatch_tests = os.path.join(flexmatch_home, "tests")
+    rewrite_rules = ["linear-rewrites"]
+    if use_im2col:
+        rewrite_rules.append("im2col-rewrites")
+    subprocess.run(["python3", "run_eqsat.py", model_path, "resmlp",
+                    *rewrite_rules],
+                   cwd=flexmatch_tests)
+    rewrites_path = os.path.join(flexmatch_tests, "resmlp-rewritten.json")
+    data_path = os.path.join(flexmatch_tests, "resmlp-data.json")
     end = time.time()
-    print(f"Glenside total time: {end - start}")
-    result_file = os.path.join(glenside_home, "models", "resmlp-dump.json")
-    if not os.path.exists(result_file):
-        raise Exception("No rewrite results given")
-
-    # now we take the JSON dump and compile it back into Relay
-    with open(result_file, "r") as fp:
-        recexpr_json = json.load(fp)
-
-    compiler = RecExprCompiler({
-        "flex-linear": "ilaflex.linear"
-    }, {
-        "flex-linear": "ilaflex"
-    })
-    shape_dict = {}
-    for arg in mod["main"].params:
-        shape_dict[arg.name_hint] = tuple(arg.type_annotation.shape)
+    print(f"Glenside search time: {end-start}")
 
     start = time.time()
-    expr = compiler.to_relay_expr(recexpr_json, shape_dict)
-    mod = tvm.ir.IRModule.from_expr(expr)
-    mod = relay.transform.InferType()(mod)
+    target_path = os.path.join(os.getcwd(), "resmlp-rewritten.relay")
+    subprocess.run(["python3", "compile_model.py", model_path, target_path,
+                    rewrites_path, data_path,
+                    *rewrite_rules],
+                   cwd=flexmatch_tests)
+
+    with open(target_path, "r") as fp:
+        new_mod_text = fp.read()
+
+    new_mod = tvm.parser.fromtext(new_mod_text)
     end = time.time()
     print(f"RecExpr to Relay conversion time: {end-start}")
-    return mod, params
+    return new_mod, new_params
 
 
 def execute_tvm_model(relay_model, images):
@@ -176,7 +181,7 @@ def dump_to_csv(filename, fieldnames, data):
             writer.writerow(r)
 
 
-def compare_on_data(net, testloader, num_images, use_accelerators):
+def compare_on_data(net, testloader, num_images, use_accelerators, use_im2col):
     mod, params = import_into_relay(net)
     compile_start = time.time()
     relay_model = compile_into_tvm(mod, params)
@@ -244,7 +249,7 @@ def compare_on_data(net, testloader, num_images, use_accelerators):
             pt_relay_diff = torch.abs(torch.flatten(pt_outputs - relay_outputs))
             relay_accel_diff = None
             if use_accelerators:
-                relay_accel_diff = torch.abs(torch.flatten(accel_outpus - relay_outputs))
+                relay_accel_diff = torch.abs(torch.flatten(accel_outputs - relay_outputs))
 
             numerical_results.append({
                 "n_diff_pt_relay": len(pt_relay_diff >= DIFF_THRESHOLD),
@@ -284,10 +289,10 @@ def compare_on_data(net, testloader, num_images, use_accelerators):
     dump_to_csv("pred.csv", pred_fieldnames, pred_results)
 
 
-def main(params_path, num_images, use_accelerators, shuffle):
-    testloader = load_data(shuffle=True)
+def main(params_path, num_images, use_accelerators, shuffle, use_im2col):
+    testloader = load_data(shuffle=shuffle)
     net = init_net(params_path)
-    compare_on_data(net, testloader, num_images, use_accelerators)
+    compare_on_data(net, testloader, num_images, use_accelerators, use_im2col)
 
 
 if __name__ == "__main__":
@@ -296,6 +301,7 @@ if __name__ == "__main__":
     parser.add_argument("--use-accelerators", action="store_true")
     parser.add_argument("--no-shuffle", action="store_true")
     parser.add_argument("--params-path", type=str, default="./cifar_net.pth")
+    parser.add_argument("--use-im2col", action="store_true")
     args = parser.parse_args()
 
-    main(args.params_path, args.num_images, args.use_accelerators, not args.no_shuffle)
+    main(args.params_path, args.num_images, args.use_accelerators, not args.no_shuffle, args.use_im2col)

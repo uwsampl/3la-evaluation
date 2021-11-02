@@ -322,14 +322,6 @@ RUN echo "verbose = off" >> /root/.wgetrc
 RUN make download_data
 RUN make download_model
 
-WORKDIR /root
-ADD ./inference ./inference
-WORKDIR /root/inference/language/bert/
-RUN mkdir build
-RUN	cp ../../mlperf.conf build/mlperf.conf
-RUN make download_data
-RUN make download_model
-
 # Build TVM with Rust bindings 
 # THIS MUST BE KEPT UP-TO-DATE WITH WHATEVER TVM VERSION GLENSIDE IS USING!
 # This is a frustrating feature of the Dockerfile. We could potentially rely on
@@ -393,5 +385,9 @@ ADD ./e2e ./e2e
 
 WORKDIR /root
 ADD ./flexmatch ./flexmatch
+WORKDIR /root/flexmatch/flexmatch
+ENV FLEXMATCH_HOME=/root/flexmatch
+RUN --mount=type=ssh cargo build
+
 # need to have flexmatch in the environment
 ENV PYTHONPATH="/root/flexmatch/:${PYTHONPATH}"
