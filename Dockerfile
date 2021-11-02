@@ -26,11 +26,24 @@ RUN apt update && \
     unzip \
     wget
 
+# Set up MLPerf inference. (Downloads take a while, so this should be up near
+# the top.)
+WORKDIR /root
+ADD ./inference ./inference
+WORKDIR /root/inference/language/bert/
+RUN mkdir build
+RUN	cp ../../mlperf.conf build/mlperf.conf
+# Make wget quiet so as to not spam the output.
+RUN echo "verbose = off" >> /root/.wgetrc
+RUN make download_data
+RUN make download_model
+
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:$PATH"
 
 # Install LLVM
+WORKDIR /root
 RUN wget https://apt.llvm.org/llvm.sh
 RUN chmod +x llvm.sh
 RUN sudo ./llvm.sh 10
@@ -87,17 +100,6 @@ RUN --mount=type=ssh cargo build --no-default-features --features "tvm"
 
 WORKDIR /root
 ADD run.sh run.sh
-
-# Set up MLPerf inference.
-WORKDIR /root
-ADD ./inference ./inference
-WORKDIR /root/inference/language/bert/
-RUN mkdir build
-RUN	cp ../../mlperf.conf build/mlperf.conf
-# Make wget quiet so as to not spam the output.
-RUN echo "verbose = off" >> /root/.wgetrc
-RUN make download_data
-RUN make download_model
 
 WORKDIR /root
 ADD ./bert_onnx.py ./bert_onnx.py
