@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Test the exact matcher in TVM.
+# TODO(@gussmith23) Add more invocations of TVM tests.
+TVM_FFI=ctypes python3 -m pytest -v tvm/tests/python/relay/test_exact_matcher.py
+
 # Test the 3LA version of Glenside.
 cargo test --manifest-path glenside/Cargo.toml --no-default-features --features "tvm"
 
