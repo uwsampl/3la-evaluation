@@ -32,12 +32,13 @@ jobs:
       run: |
         export TAG=3la-docker:$(date +%s)
         echo "::set-output name=TAG::$TAG"
+        eval `ssh-agent -s`
+        ssh-add
         DOCKER_BUILDKIT=1 docker build \
           . \
           --file Dockerfile \
-          --build-arg=TVM_BUILD_JOBS=32 \
           --ssh default \
-          --no-cache \
+          --build-arg SSH_KEY="$(cat ~/.ssh/id_rsa)" \
           --tag $TAG
     - name: Run tests
       run: docker run ${{ steps.build.outputs.TAG }} ./run.sh
