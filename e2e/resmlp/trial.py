@@ -85,7 +85,7 @@ def compile_into_tvm(mod, params):
     return relay_model
 
 
-def compile_into_glenside(net):
+def compile_into_glenside(net, use_im2col=False):
     mod, params = import_into_relay(net)
     # weirdness due to hardcoded directories in the Glenside ResMLP test
 
@@ -189,7 +189,7 @@ def compare_on_data(net, testloader, num_images, use_accelerators, use_im2col):
     print(f"Relay compile time: {compile_end - compile_start}")
 
     if use_accelerators:
-        accel_mod, accel_params = compile_into_glenside(net)
+        accel_mod, accel_params = compile_into_glenside(net, use_im2col=use_im2col)
         accel_model = compile_into_tvm(accel_mod, accel_params)
 
     # numerical results:
