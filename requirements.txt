@@ -38,7 +38,6 @@ tqdm==4.62.3
 transformers==4.10.3
 typed-ast==1.4.0
 typing-extensions==3.10.0.2
-unattended-upgrades==0.1
 urllib3==1.26.7
 xgboost==0.90
 zipp==3.5.0
