@@ -8,7 +8,6 @@ click==8.0.1
 Cython==0.29.24
 dbus-python==1.2.16
 decorator==4.4.0
-distro-info===0.23ubuntu1
 filelock==3.0.12
 huggingface-hub==0.0.17
 idna==3.2
