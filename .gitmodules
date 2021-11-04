@@ -12,3 +12,28 @@
 [submodule "flexmatch"]
 	path = flexmatch
 	url = git@github.com:AD1024/flexmatch.git
+[submodule "3la_sim_testbench"]
+	path = 3la_sim_testbench
+	url = git@github.com:LeeOHzzZ/3la_sim_testbench.git
+	shallow = true
+[submodule "3la_ILA_tensor_op"]
+	path = 3la_ILA_tensor_op
+	url = git@github.com:LeeOHzzZ/3la_ILA_tensor_op.git
+[submodule "ILAng"]
+	path = ILAng
+	url = https://github.com/PrincetonUniversity/ILAng.git
+[submodule "vta-ila"]
+	path = vta-ila
+	url = https://github.com/LeeOHzzZ/vta-ila.git
+[submodule "HLSCNN_Accel"]
+	path = HLSCNN_Accel
+	url = git@github.com:ttambe/HLSCNN_Accel.git
+[submodule "hlscnn-ila"]
+	path = hlscnn-ila
+	url = https://github.com/PrincetonUniversity/hlscnn-ila.git
+[submodule "FlexNLP"]
+	path = FlexNLP
+	url = git@github.com:ttambe/FlexNLP.git
+[submodule "flexnlp-ila"]
+	path = flexnlp-ila
+	url = https://github.com/PrincetonUniversity/flexnlp-ila.git
