@@ -21,9 +21,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
     flex \
     gcc-5 \
     g++-5 \
-    git \
     libz3-dev \
-    openssh-client \
     python3 \
     python3-pip \
     wget \
@@ -62,31 +60,20 @@ WORKDIR $BOOST_DIR
 RUN ./bootstrap.sh --prefix=$BUILD_PREF
 RUN ./b2 --with-chrono --with-math --with-system install -j"$(nproc)" || :
 
-# to access private repo
-ARG SSH_KEY
-RUN eval "$(ssh-agent -s)"
-RUN mkdir -p /root/.ssh/ && \
-echo "$SSH_KEY" > /root/.ssh/id_rsa && \
-chmod -R 600 /root/.ssh/ && \
-ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-
 # 3la_sim_testbench
 ENV SIM_TEST_DIR $WORK_ROOT/3la_sim_testbench
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 git@github.com:LeeOHzzZ/3la_sim_testbench.git $SIM_TEST_DIR
-WORKDIR $SIM_TEST_DIR
-RUN git submodule init && \
-    git submodule update tool/numcpp
+ADD 3la_sim_testbench $SIM_TEST_DIR
 
 # 3la_ILA_tensor_op
 ENV ILA_TENSOR_OP_DIR $WORK_ROOT/3la_ILA_tensor_op
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 git@github.com:LeeOHzzZ/3la_ILA_tensor_op.git $ILA_TENSOR_OP_DIR
+ADD 3la_ILA_tensor_op $ILA_TENSOR_OP_DIR
 
 # ILAng
 ENV ILANG_DIR $WORK_ROOT/ILAng
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 https://github.com/PrincetonUniversity/ILAng.git $ILANG_DIR
+ADD ILAng $ILANG_DIR
 WORKDIR $ILANG_DIR
 RUN mkdir -p build 
 WORKDIR $ILANG_DIR/build
@@ -99,7 +86,7 @@ RUN $CMAKE_DIR/bin/cmake $ILANG_DIR && \
 ENV VTA_ILA_DIR $WORK_ROOT/vta-ila
 WORKDIR $WORK_ROOT
 ADD https://api.github.com/repos/LeeOHzzZ/vta-ila/git/refs/heads/master vtaila_version.json
-RUN git clone --depth=1 https://github.com/LeeOHzzZ/vta-ila.git $VTA_ILA_DIR
+ADD vta-ila $VTA_ILA_DIR
 WORKDIR $VTA_ILA_DIR
 RUN mkdir -p build
 WORKDIR $VTA_ILA_DIR/build
@@ -123,14 +110,12 @@ RUN HEADER="-isystem$SIM_TEST_DIR/vta/ap_include" && \
 # HLSCNN
 ENV HLSCNN_DIR $WORK_ROOT/HLSCNN_Accel
 WORKDIR $WORK_ROOT
-RUN git clone git@github.com:ttambe/HLSCNN_Accel.git $HLSCNN_DIR
-WORKDIR $HLSCNN_DIR
-RUN git submodule update --init --recursive
+ADD HLSCNN_Accel $HLSCNN_DIR
 
 # hlscnn-ila
 ENV CNN_ILA_DIR $WORK_ROOT/hlscnn-ila
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 https://github.com/PrincetonUniversity/hlscnn-ila.git $CNN_ILA_DIR
+ADD hlscnn-ila $CNN_ILA_DIR
 WORKDIR $CNN_ILA_DIR
 RUN mkdir -p build
 WORKDIR $CNN_ILA_DIR/build
@@ -159,15 +144,13 @@ RUN cp hlscnn $BUILD_PREF/bin/hlscnn_sim_driver
 # FlexNLP
 ENV FLEX_NLP_DIR $WORK_ROOT/FlexNLP
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 git@github.com:ttambe/FlexNLP.git $FLEX_NLP_DIR
-WORKDIR $FLEX_NLP_DIR
-RUN git submodule update --init --recursive
+ADD FlexNLP $FLEX_NLP_DIR
 
 # flexnlp-ila
 ENV FLEX_ILA_DIR $WORK_ROOT/flexnlp-ila
 WORKDIR $WORK_ROOT
 ADD https://api.github.com/repos/PrincetonUniversity/flexnlp-ila/git/refs/heads/master flexila_version.json
-RUN git clone --depth=1 https://github.com/PrincetonUniversity/flexnlp-ila.git $FLEX_ILA_DIR
+ADD flexnlp-ila $FLEX_ILA_DIR
 WORKDIR $FLEX_ILA_DIR
 RUN mkdir -p build
 WORKDIR $FLEX_ILA_DIR/build
@@ -247,7 +230,6 @@ RUN apt update && \
     cmake \
     curl \
     g++ \
-    git \
     libclang-dev \
     libcurl4-openssl-dev \
     libedit-dev \
