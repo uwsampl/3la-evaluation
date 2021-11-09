@@ -244,31 +244,30 @@ def main(data_file, batch_size, time_steps, seed):
     random_hidden = np.zeros((batch_size, hidden_size))
     random_cell = np.zeros((batch_size, hidden_size))
 
-    args = map(lambda a: a.astype("float32"), [
-        random_input, random_hidden, random_cell,
-        lstm_i2h_w, lstm_h2h_w, lstm_bias, linear_w, linear_bias
-    ])
-
     target = 'llvm'
     ctx = tvm.cpu(0)
+    args = list(
+        map(lambda a: tvm.nd.array(a.astype("float32"), device=ctx),
+            [
+                random_input, random_hidden, random_cell,
+                lstm_i2h_w, lstm_h2h_w, lstm_bias, linear_w, linear_bias
+            ]))
+
     with tvm.transform.PassContext(opt_level=3):
         exe = relay.vm.compile(mod_wo_acc, target)
         vm = runtime.vm.VirtualMachine(exe, ctx)
-        ret_mod_wo_acc = vm.invoke("main", *[tvm.nd.array(arg, device=ctx) for arg in args])
+        ret_mod_wo_acc = vm.invoke("main", *args)
         out_llvm = ret_mod_wo_acc.asnumpy()
-
-    args = map(lambda a: a.astype("float32"), [
-        random_input, random_hidden, random_cell,
-        lstm_i2h_w, lstm_h2h_w, lstm_bias, linear_w, linear_bias
-    ])
 
     with tvm.transform.PassContext(opt_level=3):
         exe = relay.vm.compile(mod, target)
         vm = runtime.vm.VirtualMachine(exe, ctx)
-        ret_mod = vm.invoke("main", *[tvm.nd.array(arg, device=ctx) for arg in args])
+        ret_mod = vm.invoke("main", *args)
         out_flex = ret_mod.asnumpy()
-    print(out_flex.asnumpy())
 
+    diff = np.absolute(out_flex - out_llvm)
+    print(f"Max diff: {diff.max()}")
+    print(diff)
 
 
 if __name__ == "__main__":
