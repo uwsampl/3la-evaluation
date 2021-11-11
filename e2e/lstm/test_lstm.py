@@ -111,9 +111,8 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
         torch_loss += len(data) * criterion(torch_out, target).item()
         base_loss += len(data) * criterion(base_out, target).item()
 
-
         if use_accelerators:
-            accel_out = execute_tvm_model(accel_relay, data)
+            accel_out = execute_tvm_model(accel_relay, relay_params, data)
             accel_loss += len(accel_out) * criterion(accel_out, target).item()
 
     print(f"Total Torch loss: {torch_loss}")
