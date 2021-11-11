@@ -1,9 +1,4 @@
 #[version = "0.0.5"]
-type List[A] {
-  Cons(A, List[A]),
-  Nil,
-}
-
 type tensor_int8_t {
   tensor_nil_int8,
   tensor0_int8(int8),
@@ -13,6 +8,66 @@ type tensor_int8_t {
   tensor4_int8(Tensor[(?, ?, ?, ?), int8]),
   tensor5_int8(Tensor[(?, ?, ?, ?, ?), int8]),
   tensor6_int8(Tensor[(?, ?, ?, ?, ?, ?), int8]),
+}
+
+type tensor_float16_t {
+  tensor_nil_float16,
+  tensor0_float16(float16),
+  tensor1_float16(Tensor[(?), float16]),
+  tensor2_float16(Tensor[(?, ?), float16]),
+  tensor3_float16(Tensor[(?, ?, ?), float16]),
+  tensor4_float16(Tensor[(?, ?, ?, ?), float16]),
+  tensor5_float16(Tensor[(?, ?, ?, ?, ?), float16]),
+  tensor6_float16(Tensor[(?, ?, ?, ?, ?, ?), float16]),
+}
+
+type tensor_float64_t {
+  tensor_nil_float64,
+  tensor0_float64(float64),
+  tensor1_float64(Tensor[(?), float64]),
+  tensor2_float64(Tensor[(?, ?), float64]),
+  tensor3_float64(Tensor[(?, ?, ?), float64]),
+  tensor4_float64(Tensor[(?, ?, ?, ?), float64]),
+  tensor5_float64(Tensor[(?, ?, ?, ?, ?), float64]),
+  tensor6_float64(Tensor[(?, ?, ?, ?, ?, ?), float64]),
+}
+
+type tensor_uint8_t {
+  tensor_nil_uint8,
+  tensor0_uint8(uint8),
+  tensor1_uint8(Tensor[(?), uint8]),
+  tensor2_uint8(Tensor[(?, ?), uint8]),
+  tensor3_uint8(Tensor[(?, ?, ?), uint8]),
+  tensor4_uint8(Tensor[(?, ?, ?, ?), uint8]),
+  tensor5_uint8(Tensor[(?, ?, ?, ?, ?), uint8]),
+  tensor6_uint8(Tensor[(?, ?, ?, ?, ?, ?), uint8]),
+}
+
+type tensor_int32_t {
+  tensor_nil_int32,
+  tensor0_int32(int32),
+  tensor1_int32(Tensor[(?), int32]),
+  tensor2_int32(Tensor[(?, ?), int32]),
+  tensor3_int32(Tensor[(?, ?, ?), int32]),
+  tensor4_int32(Tensor[(?, ?, ?, ?), int32]),
+  tensor5_int32(Tensor[(?, ?, ?, ?, ?), int32]),
+  tensor6_int32(Tensor[(?, ?, ?, ?, ?, ?), int32]),
+}
+
+type Option[A] {
+  Some(A),
+  None,
+}
+
+type tensor_int16_t {
+  tensor_nil_int16,
+  tensor0_int16(int16),
+  tensor1_int16(Tensor[(?), int16]),
+  tensor2_int16(Tensor[(?, ?), int16]),
+  tensor3_int16(Tensor[(?, ?, ?), int16]),
+  tensor4_int16(Tensor[(?, ?, ?, ?), int16]),
+  tensor5_int16(Tensor[(?, ?, ?, ?, ?), int16]),
+  tensor6_int16(Tensor[(?, ?, ?, ?, ?, ?), int16]),
 }
 
 type tensor_uint16_t {
@@ -37,11 +92,6 @@ type tensor_float32_t {
   tensor6_float32(Tensor[(?, ?, ?, ?, ?, ?), float32]),
 }
 
-type Option[A] {
-  Some(A),
-  None,
-}
-
 type tensor_int64_t {
   tensor_nil_int64,
   tensor0_int64(int64),
@@ -53,66 +103,16 @@ type tensor_int64_t {
   tensor6_int64(Tensor[(?, ?, ?, ?, ?, ?), int64]),
 }
 
-type tensor_uint8_t {
-  tensor_nil_uint8,
-  tensor0_uint8(uint8),
-  tensor1_uint8(Tensor[(?), uint8]),
-  tensor2_uint8(Tensor[(?, ?), uint8]),
-  tensor3_uint8(Tensor[(?, ?, ?), uint8]),
-  tensor4_uint8(Tensor[(?, ?, ?, ?), uint8]),
-  tensor5_uint8(Tensor[(?, ?, ?, ?, ?), uint8]),
-  tensor6_uint8(Tensor[(?, ?, ?, ?, ?, ?), uint8]),
+type List[A] {
+  Cons(A, List[A]),
+  Nil,
 }
 
 type Tree[A] {
   Rose(A, List[Tree[A]]),
 }
 
-type tensor_int32_t {
-  tensor_nil_int32,
-  tensor0_int32(int32),
-  tensor1_int32(Tensor[(?), int32]),
-  tensor2_int32(Tensor[(?, ?), int32]),
-  tensor3_int32(Tensor[(?, ?, ?), int32]),
-  tensor4_int32(Tensor[(?, ?, ?, ?), int32]),
-  tensor5_int32(Tensor[(?, ?, ?, ?, ?), int32]),
-  tensor6_int32(Tensor[(?, ?, ?, ?, ?, ?), int32]),
-}
-
-type tensor_float16_t {
-  tensor_nil_float16,
-  tensor0_float16(float16),
-  tensor1_float16(Tensor[(?), float16]),
-  tensor2_float16(Tensor[(?, ?), float16]),
-  tensor3_float16(Tensor[(?, ?, ?), float16]),
-  tensor4_float16(Tensor[(?, ?, ?, ?), float16]),
-  tensor5_float16(Tensor[(?, ?, ?, ?, ?), float16]),
-  tensor6_float16(Tensor[(?, ?, ?, ?, ?, ?), float16]),
-}
-
-type tensor_int16_t {
-  tensor_nil_int16,
-  tensor0_int16(int16),
-  tensor1_int16(Tensor[(?), int16]),
-  tensor2_int16(Tensor[(?, ?), int16]),
-  tensor3_int16(Tensor[(?, ?, ?), int16]),
-  tensor4_int16(Tensor[(?, ?, ?, ?), int16]),
-  tensor5_int16(Tensor[(?, ?, ?, ?, ?), int16]),
-  tensor6_int16(Tensor[(?, ?, ?, ?, ?, ?), int16]),
-}
-
-type tensor_float64_t {
-  tensor_nil_float64,
-  tensor0_float64(float64),
-  tensor1_float64(Tensor[(?), float64]),
-  tensor2_float64(Tensor[(?, ?), float64]),
-  tensor3_float64(Tensor[(?, ?, ?), float64]),
-  tensor4_float64(Tensor[(?, ?, ?, ?), float64]),
-  tensor5_float64(Tensor[(?, ?, ?, ?, ?), float64]),
-  tensor6_float64(Tensor[(?, ?, ?, ?, ?, ?), float64]),
-}
-
-def @main(%data: Tensor[(35, 10), int64], %hidden: (Tensor[(1, 10, 128), float32], Tensor[(1, 10, 128), float32]), %encoder_weight: Tensor[(33278, 128), float32], %rnn_weight_ih_l0: Tensor[(512, 128), float32], %rnn_weight_hh_l0: Tensor[(512, 128), float32], %rnn_bias_ih_l0: Tensor[(512), float32], %rnn_bias_hh_l0: Tensor[(512), float32], %decoder_weight: Tensor[(33278, 128), float32], %decoder_bias: Tensor[(33278), float32]) {
+def @main(%data: Tensor[(35, 1), int64], %hidden: (Tensor[(1, 1, 128), float32], Tensor[(1, 1, 128), float32]), %encoder_weight: Tensor[(33278, 128), float32], %rnn_weight_ih_l0: Tensor[(512, 128), float32], %rnn_weight_hh_l0: Tensor[(512, 128), float32], %rnn_bias_ih_l0: Tensor[(512), float32], %rnn_bias_hh_l0: Tensor[(512), float32], %decoder_weight: Tensor[(33278, 128), float32], %decoder_bias: Tensor[(33278), float32]) {
   %0 = cast(%data, dtype="int32");
   %1 = take(%encoder_weight, %0, axis=0);
   %2 = nn.dropout(%1, rate=0.2f);
@@ -983,7 +983,7 @@ def @main(%data: Tensor[(35, 10), int64], %hidden: (Tensor[(1, 10, 128), float32
   %867 = reshape(%865, newshape=[-1, 128]);
   %868 = transpose(%866, axes=[1, 0]);
   %869 = nn.dense(%867, %868, units=None);
-  %870 = reshape(%869, newshape=[35, 10, 33278]);
+  %870 = reshape(%869, newshape=[35, 1, 33278]);
   %871 = add(%870, %decoder_bias);
   %872 = reshape(%871, newshape=[-1, 33278]);
   %873 = %862.1;

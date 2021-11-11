@@ -17,7 +17,7 @@ import torch
 import data
 from data import Corpus
 
-BATCH_SIZE = 10
+BATCH_SIZE = 1
 BPTT = 35
 
 def batchify(data, bsz):
