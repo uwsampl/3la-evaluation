@@ -96,7 +96,7 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     if use_accelerators:
         with open(annotated_prog_filename, "r") as fp:
             annotated_relay_mod = tvm.parser.fromtext(fp.read())
-        accel_relay = compile_into_tvm(accelerated_relay_mod)
+        accel_relay = compile_into_tvm(annotated_relay_mod)
 
     base_loss = 0.0
     accel_loss = 0.0
