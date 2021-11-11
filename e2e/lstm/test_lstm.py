@@ -39,21 +39,14 @@ def repackage_hidden(h):
         return tuple(repackage_hidden(v) for v in h)
 
 
-def compile_into_tvm(mod, params):
-    # with tvm.transform.PassContext(opt_level=0):
-    #     relay_graph, relay_lib, relay_params = relay.build(
-    #         mod, target="llvm", params=params
-    #     )
-    # relay_model = graph_executor.create(relay_graph, relay_lib, tvm.cpu(0))
-    # relay_model.set_input(**relay_params)
-    # return relay_model
-    return mod, params
-
-
-def execute_tvm_model(relay_model, data):
-    exe = relay.vm.compile(relay_model[0], "llvm")
+def compile_into_tvm(mod):
+    exe = relay.vm.compile(mod, "llvm")
     vm = runtime.vm.VirtualMachine(exe, tvm.cpu(0))
-    params = {k: v for k, v in relay_model[1].items()}
+    return vm
+
+
+def execute_tvm_model(vm, relay_params, data):
+    params = {k: v for k, v in relay_params.items()}
     params["data"] = data.numpy().astype("int64")
     params["hidden"] = (
         np.zeros((1, BATCH_SIZE, 128)).astype("float32"),
@@ -61,13 +54,6 @@ def execute_tvm_model(relay_model, data):
     )
     ret = vm.invoke("main", **params)
     return torch.from_numpy(ret[0].asnumpy())
-    # relay_model.set_input("data", data)
-    # # init hidden is 0s
-    # relay_model.set_input("hidden", (np.zeros(1, BATCH_SIZE, 128), np.zeros(1, BATCH_SIZE, 128)))
-    # relay_model.run()
-    # return torch.from_numpy(
-    #     relay_model.get_output(0).asnumpy()
-    # )
 
 
 def execute_torch_model(model, data):
@@ -98,19 +84,19 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     corpus = Corpus("./data/wikitext-2")
     val_data = batchify(corpus.valid, BATCH_SIZE)
 
-    torch_model = torch.load(torch_filename).to(torch.device("cpu"))
+    torch_model = torch.load(torch_filename, map_location=torch.device("cpu"))
 
     with open(base_prog_filename, "r") as fp:
         base_relay_mod = tvm.parser.fromtext(fp.read())
     with open(params_filename, "rb") as fp:
         relay_params = relay.load_param_dict(fp.read())
 
-    base_relay = compile_into_tvm(base_relay_mod, relay_params)
+    base_relay = compile_into_tvm(base_relay_mod)
     accel_relay = None
     if use_accelerators:
         with open(annotated_prog_filename, "r") as fp:
             annotated_relay_mod = tvm.parser.fromtext(fp.read())
-        accel_relay = compile_into_tvm(accelerated_relay_mod, relay_params)
+        accel_relay = compile_into_tvm(accelerated_relay_mod)
 
     base_loss = 0.0
     accel_loss = 0.0
@@ -119,8 +105,8 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     criterion = torch.nn.NLLLoss()
     for i in range(num_batches):
         data, target = get_batch(val_data, i)
-        torch_out = execute_torch_model(torch_model, data)
-        base_out = execute_tvm_model(base_relay, data)
+        torch_out = execute_torch_model(torch_model, relay_params, data)
+        base_out = execute_tvm_model(base_relay, relay_params, data)
 
         torch_loss += len(data) * criterion(torch_out, target).item()
         base_loss += len(data) * criterion(base_out, target).item()
