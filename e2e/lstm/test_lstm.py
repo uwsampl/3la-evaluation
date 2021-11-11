@@ -105,7 +105,7 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     criterion = torch.nn.NLLLoss()
     for i in range(num_batches):
         data, target = get_batch(val_data, i)
-        torch_out = execute_torch_model(torch_model, relay_params, data)
+        torch_out = execute_torch_model(torch_model, data)
         base_out = execute_tvm_model(base_relay, relay_params, data)
 
         torch_loss += len(data) * criterion(torch_out, target).item()
