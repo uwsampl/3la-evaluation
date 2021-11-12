@@ -2,11 +2,12 @@
 def @main(%data: Tensor[(35, 1), int64], %hidden: (Tensor[(1, 1, 128), float32], Tensor[(1, 1, 128), float32]), %encoder_weight: Tensor[(33278, 128), float32], %rnn_weight_ih_l0: Tensor[(512, 128), float32], %rnn_weight_hh_l0: Tensor[(512, 128), float32], %rnn_bias_ih_l0: Tensor[(512), float32], %rnn_bias_hh_l0: Tensor[(512), float32], %decoder_weight: Tensor[(33278, 128), float32], %decoder_bias: Tensor[(33278), float32]) -> (Tensor[(35, 33278), float32], ((), ())) {
   %856 = cast(%data, dtype="int32") /* from_string */;
   %857 = take(%encoder_weight, %856, axis=0) /* from_string */;
-  %858 = nn.dropout(%857, rate=0.2f) /* from_string */;
+  %858 = nn.dropout(%857, rate=0.0f) /* from_string */;
   %859 = %858.0;
+  let %tp = transpose(%859, axes=[1, 0, 2]) /* from_string */;
   %860 = fn (%outer_arg_0, %outer_arg_1, %outer_arg_2, %outer_arg_3, %outer_arg_4, %outer_arg_5, Compiler="ilaflex", Primitive=1, global_symbol="ilaflex.lstm_0") {
-    %855 = fn (%x: Tensor[(35, 1, 128), float32], %hidden1: (Tensor[(1, 1, 128), float32], Tensor[(1, 1, 128), float32]), %rnn_weight_ih_l01: Tensor[(512, 128), float32], %rnn_weight_hh_l01: Tensor[(512, 128), float32], %rnn_bias_ih_l01: Tensor[(512), float32], %rnn_bias_hh_l01: Tensor[(512), float32], Composite="ilaflex.lstm") {
-      %0 = split(%x, indices_or_sections=35) /* from_string */;
+    %855 = fn (%x: Tensor[(1, 35, 128), float32], %hidden1: (Tensor[(1, 1, 128), float32], Tensor[(1, 1, 128), float32]), %rnn_weight_ih_l01: Tensor[(512, 128), float32], %rnn_weight_hh_l01: Tensor[(512, 128), float32], %rnn_bias_ih_l01: Tensor[(512), float32], %rnn_bias_hh_l01: Tensor[(512), float32], Composite="ilaflex.lstm") {
+      %0 = split(%x, indices_or_sections=35, axis=1) /* from_string */;
       %1 = %0.0;
       %2 = %0.1;
       %3 = %0.2;
@@ -861,16 +862,17 @@ def @main(%data: Tensor[(35, 1), int64], %hidden: (Tensor[(1, 1, 128), float32],
       %852 = tanh(%850) /* from_string */;
       %853 = multiply(%851, %852) /* from_string */;
       %854 = (%106, %128, %150, %172, %194, %216, %238, %260, %282, %304, %326, %348, %370, %392, %414, %436, %458, %480, %502, %524, %546, %568, %590, %612, %634, %656, %678, %700, %722, %744, %766, %788, %810, %832, %853);
-      stack(%854) /* from_string */
+      transpose(stack(%854), axes=[1, 0, 2]) /* from_string */
     };
     %855(%outer_arg_0, %outer_arg_1, %outer_arg_2, %outer_arg_3, %outer_arg_4, %outer_arg_5)
   };
-  %861 = %860(%859, %hidden, %rnn_weight_ih_l0, %rnn_weight_hh_l0, %rnn_bias_ih_l0, %rnn_bias_hh_l0);
+  %861 = %860(%tp, %hidden, %rnn_weight_ih_l0, %rnn_weight_hh_l0, %rnn_bias_ih_l0, %rnn_bias_hh_l0);
+  let %tp_res = transpose(%861, axes=[1, 0, 2]);
   %862 = ();
   %863 = ();
-  %864 = (%861, %862, %863);
+  %864 = (%tp_res, %862, %863);
   %865 = %864.0;
-  %866 = nn.dropout(%865, rate=0.2f) /* from_string */;
+  %866 = nn.dropout(%865, rate=0.0f) /* from_string */;
   %867 = %866.0;
   %868 = transpose(%decoder_weight, axes=[1, 0]) /* from_string */;
   %869 = reshape(%867, newshape=[-1, 128]) /* from_string */;
