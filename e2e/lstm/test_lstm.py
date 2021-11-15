@@ -103,7 +103,7 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     torch_loss = 0.0
 
     criterion = torch.nn.NLLLoss()
-    for i in range(num_batches):
+    for i in range(0, num_batches*BPTT, BPTT):
         data, target = get_batch(val_data, i)
         torch_out = execute_torch_model(torch_model, data)
         base_out = execute_tvm_model(base_relay, relay_params, data)
@@ -120,13 +120,13 @@ def main(num_batches, base_prog_filename, annotated_prog_filename, torch_filenam
     if use_accelerators:
         print(f"Total accelerator loss: {accel_loss}")
 
-    torch_perp = math.exp(torch_loss / (num_batches - 1))
-    base_perp = math.exp(base_loss / (num_batches - 1))
+    torch_perp = math.exp(torch_loss / (num_batches*BPTT - 1))
+    base_perp = math.exp(base_loss / (num_batches*BPTT - 1))
     print(f"Torch perplexity: {torch_perp}")
     print(f"Default Relay perplexity: {base_perp}")
 
     if use_accelerators:
-        accel_perp = math.exp(accel_loss / (num_batches - 1))
+        accel_perp = math.exp(accel_loss / (num_batches*BPTT - 1))
         print(f"Relay with accelerators perplexity: {accel_perp}")
 
 if __name__ == "__main__":
