@@ -11,8 +11,10 @@ cargo test --manifest-path glenside/Cargo.toml --no-default-features --features 
 # Test import of BERT into Relay.
 python3 bert_onnx.py
 
-# Test end-to-end run of ResMLP
+# Test end-to-end run of ResMLP 
+# TODO(@gussmith23) Lowering num-images to 1. We should have a "long" and
+# "short" setting.
 cd e2e/resmlp
-python3 trial.py --num-images 5 --use-accelerators
+python3 trial.py --num-images 1 --use-accelerators
 python3 digest.py
 cd ../..
