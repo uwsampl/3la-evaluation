@@ -135,8 +135,9 @@ def compile_into_glenside(net, use_im2col=False):
     rewrite_rules = ["linear-rewrites"]
     if use_im2col:
         rewrite_rules.append("im2col-rewrites")
-    subprocess.run(["python3", "run_eqsat.py", model_path, "resmlp",
-                    *rewrite_rules],
+    subprocess.run(["python3", "run_eqsat.py", "--relay-file", model_path,
+                    "--output-file", "resmlp",
+                    "--configs", *rewrite_rules],
                    cwd=flexmatch_tests)
     rewrites_path = os.path.join(flexmatch_tests, "resmlp-rewritten.json")
     data_path = os.path.join(flexmatch_tests, "resmlp-data.json")
