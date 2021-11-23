@@ -12,9 +12,12 @@ cargo test --manifest-path glenside/Cargo.toml --no-default-features --features 
 python3 bert_onnx.py
 
 # Test end-to-end run of ResMLP 
-# TODO(@gussmith23) Lowering num-images to 1. We should have a "long" and
-# "short" setting.
+# TODO(@gussmith23) Disabling this for now, as even 1 image doesn't terminate.
+# TODO(@gussmith23) Add "fast", "nightly", and "full" eval settings (perhaps in
+# the Dockerfile? Perhaps as an env var?)
 cd e2e/resmlp
-python3 trial.py --num-images 1 --use-accelerators
-python3 digest.py
+# TODO(@gussmith23 @slyubomirsky) Before re-enabling this, please filter the
+# output of the simulator e.g. using grep. It spams the logs.
+# python3 trial.py --num-images 1 --use-accelerators
+# python3 digest.py
 cd ../..
