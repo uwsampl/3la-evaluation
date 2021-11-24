@@ -21,3 +21,6 @@ cd e2e/resmlp
 # python3 trial.py --num-images 1 --use-accelerators
 # python3 digest.py
 cd ../..
+
+#count relay ops in models
+python3 count_ops.py

@@ -392,3 +392,7 @@ RUN --mount=type=ssh cargo build
 # need to have flexmatch in the environment
 ENV PYTHONPATH="/root/flexmatch/:${PYTHONPATH}"
 WORKDIR /root
+
+WORKDIR /root
+ADD ./models ./models
+ADD ./count_ops.py ./count_ops.py
