@@ -396,3 +396,4 @@ WORKDIR /root
 WORKDIR /root
 ADD ./models ./models
 ADD ./count_ops.py ./count_ops.py
+ADD ./op_summary.py ./op_summary.py
