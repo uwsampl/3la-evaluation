@@ -23,6 +23,9 @@ jobs:
       with:
         submodules: recursive
         ssh-key: ${{ secrets.SSH_KEY }}
+    # TODO we currently have two ways of providing the SSH key: via ssh-agent +
+    # a GitHub secret, and explicitly as a build-arg flag. We should use just
+    # one method.
     - name: Build the Docker image
       id: build
       run: |
@@ -32,6 +35,7 @@ jobs:
           . \
           --file Dockerfile \
           --ssh default \
+          --build-arg SSH_KEY=${{ secrets.SSH_KEY }} \
           --no-cache \
           --tag $TAG
     - name: Run tests
