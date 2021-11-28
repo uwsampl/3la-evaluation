@@ -35,7 +35,7 @@ jobs:
           . \
           --file Dockerfile \
           --ssh default \
-          --build-arg SSH_KEY=${{ secrets.SSH_KEY }} \
+          --build-arg SSH_KEY="${{ secrets.SSH_KEY }}" \
           --no-cache \
           --tag $TAG
     - name: Run tests
