@@ -39,7 +39,7 @@ The below commands should work assuming you have the appropriate ssh credentials
 ```
 eval `ssh-agent -s`
 ssh-add
-DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default --build-arg SSH_KEY="$(cat ~/.ssh/id_rsa)
+DOCKER_BUILDKIT=1 docker build . -t 3la-pldi-2022-evaluation --ssh default --build-arg SSH_KEY="$(cat ~/.ssh/id_rsa)"
 ```
 (Yes, we are passing SSH keys twice. This is because the dockerfile pulls in git repos. 
  In the future, we should make this more uniform by including all the private repos we want to use as submodules.)
