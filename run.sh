@@ -24,3 +24,7 @@ cd ../..
 
 #count relay ops in models
 python3 count_ops.py
+
+cd flexmatch/tests 
+./get_table_stats.sh
+cd ../..
