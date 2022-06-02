@@ -4,6 +4,10 @@
 FROM ubuntu:bionic as ilabuilder
 LABEL stage=intermediate
 
+# TODO
+Merge the PR on 3la-tvm
+
+
 # var
 ENV WORK_ROOT /root
 ENV VIRTUAL_ENV 3laEnv
@@ -73,7 +77,7 @@ ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 # 3la_sim_testbench
 ENV SIM_TEST_DIR $WORK_ROOT/3la_sim_testbench
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 git@github.com:LeeOHzzZ/3la_sim_testbench.git $SIM_TEST_DIR
+RUN git clone --depth=1 --branch extended_spad git@github.com:LeeOHzzZ/3la_sim_testbench.git $SIM_TEST_DIR
 WORKDIR $SIM_TEST_DIR
 RUN git submodule init && \
     git submodule update tool/numcpp
@@ -81,7 +85,7 @@ RUN git submodule init && \
 # 3la_ILA_tensor_op
 ENV ILA_TENSOR_OP_DIR $WORK_ROOT/3la_ILA_tensor_op
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 git@github.com:LeeOHzzZ/3la_ILA_tensor_op.git $ILA_TENSOR_OP_DIR
+RUN git clone --depth=1 --branch sim_mapping git@github.com:LeeOHzzZ/3la_ILA_tensor_op.git $ILA_TENSOR_OP_DIR
 
 # ILAng
 ENV ILANG_DIR $WORK_ROOT/ILAng
@@ -130,7 +134,7 @@ RUN git submodule update --init --recursive
 # hlscnn-ila
 ENV CNN_ILA_DIR $WORK_ROOT/hlscnn-ila
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 https://github.com/PrincetonUniversity/hlscnn-ila.git $CNN_ILA_DIR
+RUN git clone --depth=1 --branch extended_spad https://github.com/PrincetonUniversity/hlscnn-ila.git $CNN_ILA_DIR
 WORKDIR $CNN_ILA_DIR
 RUN mkdir -p build
 WORKDIR $CNN_ILA_DIR/build
