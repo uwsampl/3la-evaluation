@@ -1,0 +1,383 @@
+{
+    "asm": [
+        {
+            "name": "store_wgt_i",
+            "wgt_idx": "wi"
+        },
+        {
+            "name": "store_wgt_h",
+            "wgt_idx": "wh"
+        },
+        {
+            "name": "store_bias_i",
+            "bias_idx": "bi"
+        },
+        {
+            "name": "store_bias_h",
+            "bias_idx": "bh"
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_0",
+            "idx": 0
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_1",
+            "idx": 1
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_2",
+            "idx": 2
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_3",
+            "idx": 3
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_4",
+            "idx": 4
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_5",
+            "idx": 5
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_6",
+            "idx": 6
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_7",
+            "idx": 7
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_8",
+            "idx": 8
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_9",
+            "idx": 9
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_10",
+            "idx": 10
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_11",
+            "idx": 11
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_12",
+            "idx": 12
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_13",
+            "idx": 13
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_14",
+            "idx": 14
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_15",
+            "idx": 15
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_16",
+            "idx": 16
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_17",
+            "idx": 17
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_18",
+            "idx": 18
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_19",
+            "idx": 19
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_20",
+            "idx": 20
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_21",
+            "idx": 21
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_22",
+            "idx": 22
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_23",
+            "idx": 23
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_24",
+            "idx": 24
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_25",
+            "idx": 25
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_26",
+            "idx": 26
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_27",
+            "idx": 27
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_28",
+            "idx": 28
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_29",
+            "idx": 29
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_30",
+            "idx": 30
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_31",
+            "idx": 31
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_32",
+            "idx": 32
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_33",
+            "idx": 33
+        },
+        {
+            "name": "store_act",
+            "timestep_idx": "ts_34",
+            "idx": 34
+        },
+        {
+            "name": "lstm_layer",
+            "num_ts": 35,
+            "is_bias": 1,
+            "is_zero_first": 1
+        },
+        {
+            "name": "wait_irq"
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 0
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 1
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 2
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 3
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 4
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 5
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 6
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 7
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 8
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 9
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 10
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 11
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 12
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 13
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 14
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 15
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 16
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 17
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 18
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 19
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 20
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 21
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 22
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 23
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 24
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 25
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 26
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 27
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 28
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 29
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 30
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 31
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 32
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 33
+        },
+        {
+            "name": "load_act",
+            "mem_idx": 1,
+            "ts_idx": 34
+        },
+        {
+            "name": "load_lstm_cell_state",
+            "idx": 0
+        }
+    ]
+}
