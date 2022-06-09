@@ -90,6 +90,7 @@ RUN git clone --depth=1 --branch sim_mapping git@github.com:LeeOHzzZ/3la_ILA_ten
 # ILAng
 ENV ILANG_DIR $WORK_ROOT/ILAng
 WORKDIR $WORK_ROOT
+specify branch: ilator_opt
 RUN git clone --depth=1 https://github.com/PrincetonUniversity/ILAng.git $ILANG_DIR
 WORKDIR $ILANG_DIR
 RUN mkdir -p build 
