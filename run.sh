@@ -9,7 +9,8 @@ TVM_FFI=ctypes python3 -m pytest -v tvm/tests/python/relay/test_exact_matcher.py
 cargo test --manifest-path glenside/Cargo.toml --no-default-features --features "tvm"
 
 # Test import of BERT into Relay.
-python3 bert_onnx.py
+# We don't actually use BERT, so we'll disable this for now.
+# python3 bert_onnx.py
 
 # Test end-to-end run of ResMLP 
 # TODO(@gussmith23) Disabling this for now, as even 1 image doesn't terminate.

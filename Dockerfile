@@ -319,8 +319,9 @@ RUN mkdir build
 RUN	cp ../../mlperf.conf build/mlperf.conf
 # Make wget quiet so as to not spam the output.
 RUN echo "verbose = off" >> /root/.wgetrc
-RUN make download_data
-RUN make download_model
+# We don't use BERT, so disable this.
+# RUN make download_data
+# RUN make download_model
 
 # Build TVM with Rust bindings 
 # THIS MUST BE KEPT UP-TO-DATE WITH WHATEVER TVM VERSION GLENSIDE IS USING!
