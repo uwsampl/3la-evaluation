@@ -1,6 +1,14 @@
 #!/bin/sh
 set -e
 
+# Use this flag to set the type of eval you want to run.
+# 0: fast (minutes)
+# 1: medium/nightly (<=2 hours)
+# 2: full
+# Defaults to full.
+export EVAL_TYPE="${EVAL_TYPE:-2}"
+[ "$EVAL_TYPE" -eq "0" ] || [ "$EVAL_TYPE" -eq "1" ] || [ "$EVAL_TYPE" -eq "2" ] || exit 1
+
 # Test the exact matcher in TVM.
 # TODO(@gussmith23) Add more invocations of TVM tests.
 TVM_FFI=ctypes python3 -m pytest -v tvm/tests/python/relay/test_exact_matcher.py
@@ -19,7 +27,10 @@ cargo test --manifest-path glenside/Cargo.toml --no-default-features --features 
 cd e2e/resmlp
 # TODO(@gussmith23 @slyubomirsky) Before re-enabling this, please filter the
 # output of the simulator e.g. using grep. It spams the logs.
-# python3 trial.py --num-images 1 --use-accelerators
+if [ "$EVAL_TYPE" -ge "1" ]
+then
+  python3 trial.py --num-images 1 --use-accelerators
+fi
 # python3 digest.py
 cd ../..
 

@@ -39,4 +39,4 @@ jobs:
           --no-cache \
           --tag $TAG
     - name: Run tests
-      run: docker run ${{ steps.build.outputs.TAG }} ./run.sh
+      run: docker run --env EVAL_TYPE=1 ${{ steps.build.outputs.TAG }} ./run.sh
