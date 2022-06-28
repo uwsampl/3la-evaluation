@@ -199,12 +199,22 @@ def lstm2():
     mod["main"] = vta_pattern(mod)
     print(count_all_overloads(mod))
 
+
+def resnet50_from_different_frameworks():
+    for framework in ['tf', 'pytorch', 'onnx']:
+        print(f"RESNET50 from {framework}")
+        with open(f"./diffing_models_from_different_frameworks/resnet50_simplifyinference_from_{framework}.relay", "r") as fp:
+            glob = fp.read()
+            mod = tvm.parser.fromtext(glob)
+        print("total:", count_all_ops(mod))
+        for pattern in [flexasr_pattern, hlscnn_pattern, vta_pattern]:
+            mod = tvm.IRModule({'main': pattern(mod)})
+            print(count_all_ops_in_overloads(mod))
+
 transformer()
 efficientnet2()
 lstm2()
 mobilenetv2()
 resmlp()
 resnet20()
-
-
-
+resnet50_from_different_frameworks()
