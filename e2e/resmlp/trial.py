@@ -1,6 +1,5 @@
 import argparse
 import csv
-import json
 import os
 import subprocess
 import time
@@ -10,8 +9,7 @@ import numpy as np
 import torch
 import torchvision
 import torchvision.transforms as transforms
-import model 
-from model import ResMLP
+from .model import ResMLP
 
 import tvm
 from tvm import relay

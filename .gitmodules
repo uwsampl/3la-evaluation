@@ -12,3 +12,6 @@
 [submodule "flexmatch"]
 	path = flexmatch
 	url = git@github.com:AD1024/flexmatch.git
+[submodule "e2e/resmlp/model"]
+	path = e2e/resmlp/model
+	url = git@github.com:lucidrains/res-mlp-pytorch.git
