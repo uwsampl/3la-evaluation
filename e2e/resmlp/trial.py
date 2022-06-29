@@ -9,7 +9,7 @@ import numpy as np
 import torch
 import torchvision
 import torchvision.transforms as transforms
-from .model import ResMLP
+from model import ResMLP
 
 import tvm
 from tvm import relay
