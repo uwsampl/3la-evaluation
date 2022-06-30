@@ -1,0 +1,981 @@
+My SLURM_ARRAY_JOB_ID is 39351746.
+My SLURM_ARRAY_TASK_ID is 0
+Executing on the machine: della-i12n3
+ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'bison/3.7.2'
+ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'rh/devtoolset/9'
+One or more operators have not been tuned. Please tune your model for better performance. Use DEBUG logging level to see more details.
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/transforms/let_list.h:54: Warning: letlist not used
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/transforms/let_list.h:54: Warning: letlist not used
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/transforms/let_list.h:54: Warning: letlist not used
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:68: Begin FlexASR Codegen
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:51: [Pattern Matching] Find annotated: ilaflex.lstm
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_0, ty=TensorType([1, 35, 128], float32))
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_1, ty=TupleTypeNode([TensorType([1, 1, 128], float32), TensorType([1, 1, 128], float32)]))
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_2, ty=TensorType([512, 128], float32))
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_3, ty=TensorType([512, 128], float32))
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_4, ty=TensorType([512], float32))
+[11:26:39] /home/yl29/3la/3la-tvm/src/relay/backend/contrib/ilaflex/ilaflex_codegen.cc:55: Var(outer_arg_5, ty=TensorType([512], float32))
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:26:40] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:26:42] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 29.956315s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:27:18] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:27:19] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:27:21] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.491696s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:27:57] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:27:58] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:28:00] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.467634s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:28:36] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:28:37] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:28:39] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.267174s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:29:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:29:18] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.275741s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:29:54] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:29:55] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:29:57] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.295943s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:30:33] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:30:34] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:30:36] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.563972s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:31:12] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:31:13] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:31:15] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.197617s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:31:51] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:31:52] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:31:54] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.033332s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:46: [Runtime] enter ilaflex.lstm_0 runtime
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:214: [Runtime] operator name is ilaflex.lstm
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:215: LSTM input nodes size: 6
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 0	3	float32	17920
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 1	3	float32	512
+dim_0: 1	dim_1: 1	dim_2: 128	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 2	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 3	2	float32	262144
+dim_0: 512	dim_1: 128	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 4	1	float32	2048
+dim_0: 512	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:219: 5	1	float32	2048
+dim_0: 512	
+[11:32:30] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:227: LSTM output dimension: 3
+dim_0: 1	dim_1: 35	dim_2: 128	
+[11:32:32] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:324: calling flexnlp lstm driver
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+@10 ns ********* simulation start *********
+@98550 ns *********     sc_stop      *********
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+
+        SystemC 2.3.3-Accellera --- Oct 12 2021 16:02:06
+        Copyright (c) 1996-2018 by all Contributors,
+        ALL RIGHTS RESERVED
+*** ILA tensor assembly has been dumped to ./test/lstm_asm.json ***
+
+--------------------------------------------------------------
+	collecting input data
+--------------------------------------------------------------
+
+collecting lstm input data from ./data/lstm_inp.txt
+collecting lstm i2h weights from ./data/lstm_i2h_wgt.txt
+collecting lstm h2h weights from ./data/lstm_h2h_wgt.txt
+collecting lstm bias from ./data/lstm_bias.txt
+*** performed weight matrix tiling for PEs ***
+*** performed bias reshape for PEs ***
+(4, 3, 4, 2)
+
+--------------------------------------------------------------
+	invoking float to adpfloat converter
+--------------------------------------------------------------
+
+
+*** data_lib has been dump to ./test/lstm_data_lib.json***
+
+
+--------------------------------------------------------------
+	generate prog_frag.json for ILA simulator
+--------------------------------------------------------------
+
+*** ILA program fragment has been dumped to ./test/lstm_prog_frag_in.json***
+
+
+--------------------------------------------------------------
+	invoking ILA simulator
+--------------------------------------------------------------
+
+
+[FLEXASR_ILA] calling adptfloat-version ila simulator
+
+
+********* ILA simulator performance ***********
+ILA simulator execution time is 30.407942s
+
+*** lstm output has been dump to ./data/lstm_out.txt ***
+[11:33:09] /home/yl29/3la/3la-tvm/src/runtime/contrib/ilaflex/ilaflex_runtime.cc:420: [Runtime] exit ilaflex.lstm_0 runtime, resume host
+Total Relay loss: 1677.0348453521729
+Total accelerator loss: 2845.2854323387146
+Default Relay perplexity: 122.15093308731136
+Relay with accelerators perplexity: 3472.674487990388
