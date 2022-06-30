@@ -89,7 +89,7 @@ WORKDIR $WORK_ROOT
 RUN git clone --depth=1 https://github.com/PrincetonUniversity/ILAng.git $ILANG_DIR
 WORKDIR $ILANG_DIR
 # Branch: ilator_opt
-RUN git fetch && git checkout 7de6fd9f78999845644326e462bcb723daf60b6f
+RUN git fetch origin ilator_opt && git checkout 7de6fd9f78999845644326e462bcb723daf60b6f
 RUN mkdir -p build 
 WORKDIR $ILANG_DIR/build
 # RUN $CMAKE_DIR/bin/cmake $ILANG_DIR -DCMAKE_INSTALL_PREFIX=$BUILD_PREF && \
