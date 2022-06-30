@@ -22,6 +22,7 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
     gcc-5 \
     g++-5 \
     git \
+    libboost-all-dev \
     libz3-dev \
     openssh-client \
     python3 \
