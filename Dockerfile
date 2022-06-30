@@ -4,10 +4,6 @@
 FROM ubuntu:bionic as ilabuilder
 LABEL stage=intermediate
 
-# TODO
-Merge the PR on 3la-tvm
-
-
 # var
 ENV WORK_ROOT /root
 ENV VIRTUAL_ENV 3laEnv
@@ -90,9 +86,10 @@ RUN git clone --depth=1 --branch sim_mapping git@github.com:LeeOHzzZ/3la_ILA_ten
 # ILAng
 ENV ILANG_DIR $WORK_ROOT/ILAng
 WORKDIR $WORK_ROOT
-specify branch: ilator_opt
 RUN git clone --depth=1 https://github.com/PrincetonUniversity/ILAng.git $ILANG_DIR
 WORKDIR $ILANG_DIR
+# Branch: ilator_opt
+RUN git checkout 7de6fd9f78999845644326e462bcb723daf60b6f
 RUN mkdir -p build 
 WORKDIR $ILANG_DIR/build
 # RUN $CMAKE_DIR/bin/cmake $ILANG_DIR -DCMAKE_INSTALL_PREFIX=$BUILD_PREF && \
