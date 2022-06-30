@@ -103,6 +103,7 @@ WORKDIR $WORK_ROOT
 ADD https://api.github.com/repos/LeeOHzzZ/vta-ila/git/refs/heads/master vtaila_version.json
 RUN git clone --depth=1 https://github.com/LeeOHzzZ/vta-ila.git $VTA_ILA_DIR
 WORKDIR $VTA_ILA_DIR
+RUN git fetch origin alu_mul && git checkout 41a12ae4b5a29e6139bc5dcbfa4c726502897338
 RUN mkdir -p build
 WORKDIR $VTA_ILA_DIR/build
 RUN $CMAKE_DIR/bin/cmake $VTA_ILA_DIR -DCMAKE_PREFIX_PATH=$BUILD_PREF && \
