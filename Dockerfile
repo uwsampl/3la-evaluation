@@ -22,7 +22,6 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
     gcc-5 \
     g++-5 \
     git \
-    libboost-all-dev \
     libz3-dev \
     openssh-client \
     python3 \
@@ -35,6 +34,14 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
 #WORKDIR $WORK_ROOT
 #RUN pip3 install virtualenv
 #RUN virtualenv $VIRTUAL_ENV
+
+# Install Boost manually to get latest version.
+WORKDIR /root
+RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz -O boost.tar.gz \
+    && tar zxvf boost.tar.gz \
+    && cd boost \
+    && ./bootstrap.sh \
+    && ./b2 install
 
 # cmake
 ENV CMAKE_DIR $WORK_ROOT/cmake-3.19.2-Linux-x86_64
