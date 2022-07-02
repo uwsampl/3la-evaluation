@@ -42,6 +42,13 @@ RUN wget -q https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boo
     && cd boost_1_79_0 \
     && ./bootstrap.sh \
     && ./b2 install
+# Test Boost. Remove this if it works. Testing b/c TVM can't find it for some reason.
+RUN echo "#include <boost/numeric/conversion/cast.hpp>" >> test_boost.cpp \
+    && echo "int main() {}" >> test_boost.cpp \
+    && gcc test_boost.cpp \
+    && ./a.out
+
+
 
 # cmake
 ENV CMAKE_DIR $WORK_ROOT/cmake-3.19.2-Linux-x86_64
