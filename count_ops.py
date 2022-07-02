@@ -1,6 +1,7 @@
 import sys
 import tvm
 import os
+import pathlib
 from tvm import relay
 import tvm.relay.testing
 from op_summary import count_all_ops, count_all_overloads, count_all_ops_in_overloads
@@ -224,7 +225,7 @@ def lstm2():
 def resnet50_from_different_frameworks():
     for framework in ['tf', 'pytorch', 'onnx']:
         print(f"RESNET50 from {framework}")
-        with open(f"./diffing_models_from_different_frameworks/resnet50_simplifyinference_from_{framework}.relay", "r") as fp:
+        with open(pathlib.Path(__file__).parent.resolve() / "diffing_models_from_different_frameworks" / f"resnet50_simplifyinference_from_{framework}.relay", "r") as fp:
             glob = fp.read()
             mod = tvm.parser.fromtext(glob)
         print("total:", count_all_ops(mod))
