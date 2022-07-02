@@ -409,3 +409,4 @@ WORKDIR /root
 ADD ./models ./models
 ADD ./count_ops.py ./count_ops.py
 ADD ./op_summary.py ./op_summary.py
+ADD ./diffing_models_from_different_frameworks ./diffing_models_from_different_frameworks
