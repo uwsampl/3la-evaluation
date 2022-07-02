@@ -35,21 +35,6 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
 #RUN pip3 install virtualenv
 #RUN virtualenv $VIRTUAL_ENV
 
-# Install Boost manually to get latest version.
-WORKDIR /root
-RUN wget -q https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz \
-    && tar xf boost_1_79_0.tar.gz \
-    && cd boost_1_79_0 \
-    && ./bootstrap.sh \
-    && ./b2 install
-# Test Boost. Remove this if it works. Testing b/c TVM can't find it for some reason.
-RUN echo "#include <boost/numeric/conversion/cast.hpp>" >> test_boost.cpp \
-    && echo "int main() {}" >> test_boost.cpp \
-    && gcc test_boost.cpp \
-    && ./a.out
-
-
-
 # cmake
 ENV CMAKE_DIR $WORK_ROOT/cmake-3.19.2-Linux-x86_64
 WORKDIR $WORK_ROOT
@@ -67,6 +52,15 @@ WORKDIR $SYSC_DIR/build
 RUN $CMAKE_DIR/bin/cmake $SYSC_DIR -DCMAKE_INSTALL_PREFIX=$BUILD_PREF -DCMAKE_CXX_STANDARD=11 && \
     make -j"$(nproc)" && \
     make install 
+
+# boost
+ENV BOOST_DIR $WORK_ROOT/boost_1_75_0
+WORKDIR $WORK_ROOT
+RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.75.0/source/boost_1_75_0.tar.gz
+RUN tar zxvf boost_1_75_0.tar.gz
+WORKDIR $BOOST_DIR
+RUN ./bootstrap.sh --prefix=$BUILD_PREF
+RUN ./b2 --with-chrono --with-math --with-system install -j"$(nproc)" || :
 
 # to access private repo
 ARG SSH_KEY
@@ -331,6 +325,14 @@ RUN echo "verbose = off" >> /root/.wgetrc
 # We don't use BERT, so disable this.
 # RUN make download_data
 # RUN make download_model
+
+# Install Boost manually to get latest version.
+WORKDIR /root
+RUN wget -q https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz \
+    && tar xf boost_1_79_0.tar.gz \
+    && cd boost_1_79_0 \
+    && ./bootstrap.sh \
+    && ./b2 install
 
 # Build TVM with Rust bindings 
 # THIS MUST BE KEPT UP-TO-DATE WITH WHATEVER TVM VERSION GLENSIDE IS USING!
