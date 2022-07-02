@@ -9,7 +9,12 @@ import numpy as np
 import torch
 import torchvision
 import torchvision.transforms as transforms
-from model import ResMLP
+
+# This is a hack.
+if __name__ == "__main__":
+    from model import ResMLP
+else:
+    from .model import ResMLP
 
 import tvm
 from tvm import relay
