@@ -17,10 +17,10 @@ def f(code, find, replacewith):
 
 
 newcode = file
-matches = re.findall(r'%[a-zA-Z_\./0-9]*:', funcdef)
+matches = re.findall(r'%[:a-zA-Z_\./0-9]*: ', funcdef)
 for match in matches:
-    newcode = f(newcode, match[:-1],
-                match[:-1].replace('/', '_').replace('.', '_'))
+    newcode = f(newcode, match[:-2],
+                match[:-2].replace('/', '_').replace('.', '_').replace(':', '_'))
 
 tvm.parser.fromtext(newcode)
 mod = tvm.parser.fromtext(newcode)
