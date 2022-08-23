@@ -29,7 +29,8 @@ cd e2e/resmlp
 # output of the simulator e.g. using grep. It spams the logs.
 if [ "$EVAL_TYPE" -ge "1" ]
 then
-  python3 trial.py --num-images 1 --use-accelerators
+  echo "Running trial.py disabled for now; takes too long"
+  # python3 trial.py --num-images 1 --use-accelerators
 fi
 # python3 digest.py
 cd ../..
