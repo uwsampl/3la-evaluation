@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:experimental
 ##
 ## Build ILA models and their SystemC simulator (from 3la-integrate)
 ##
@@ -157,7 +158,20 @@ RUN HEADER0="-isystem$SIM_TEST_DIR/ac_include" && \
       -DCMAKE_CXX_COMPILER=g++-5 \
       -DCMAKE_CXX_FLAGS="$HEADER0 $HEADER1 $HEADER2" && \
     make -j"$(nproc)"
-RUN cp hlscnn $BUILD_PREF/bin/hlscnn_sim_driver
+RUN cp hlscnn $BUILD_PREF/bin/hlscnn_asm_sim_driver
+
+# hlscnn-pack-data
+WORKDIR $SIM_TEST_DIR/hlscnn/tool
+RUN g++-5 pack_data.cc -o hlscnn_pack_data \
+    -I/root/3laEnv/include \
+    -I/root/3la_sim_testbench/ac_include \
+    -I/root/3la_sim_testbench/hlscnn/json_helper \
+    -I/root/HLSCNN_Accel/cmod/include \
+    -I/root/HLSCNN_Accel/cmod/harvard/top \
+    -DSC_INCLUDE_DYNAMIC_PROCESSES -DCONNECTIONS_ACCURATE_SIM -DHLS_CATAPULT \
+    -std=c++11 -lstdc++ -lsystemc -lm -lpthread \
+    -L/root/3laEnv/lib 
+RUN cp hlscnn_pack_data $BUILD_PREF/bin/hlscnn_pack_data
 
 # FlexNLP
 ENV FLEX_NLP_DIR $WORK_ROOT/FlexNLP
