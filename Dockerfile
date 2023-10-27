@@ -38,45 +38,45 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-
 # cmake
 ENV CMAKE_DIR $WORK_ROOT/cmake-3.19.2-Linux-x86_64
 WORKDIR $WORK_ROOT
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2-Linux-x86_64.tar.gz
-RUN tar zxvf cmake-3.19.2-Linux-x86_64.tar.gz
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2-Linux-x86_64.tar.gz \
+  && tar zxvf cmake-3.19.2-Linux-x86_64.tar.gz
 
 # SystemC
 ENV SYSC_DIR $WORK_ROOT/systemc-2.3.3
 WORKDIR $WORK_ROOT
-RUN wget https://accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz
-RUN tar zxvf systemc-2.3.3.tar.gz
-WORKDIR $SYSC_DIR
-RUN mkdir -p build
-WORKDIR $SYSC_DIR/build
-RUN $CMAKE_DIR/bin/cmake $SYSC_DIR -DCMAKE_INSTALL_PREFIX=$BUILD_PREF -DCMAKE_CXX_STANDARD=11 && \
-    make -j"$(nproc)" && \
-    make install 
+RUN wget https://accellera.org/images/downloads/standards/systemc/systemc-2.3.3.tar.gz && \
+  tar zxvf systemc-2.3.3.tar.gz && \
+  cd $SYSC_DIR && \
+  mkdir -p build && \
+  cd $SYSC_DIR/build && \
+  $CMAKE_DIR/bin/cmake $SYSC_DIR -DCMAKE_INSTALL_PREFIX=$BUILD_PREF -DCMAKE_CXX_STANDARD=11 && \
+  make -j"$(nproc)" && \
+  make install 
 
 # boost
 ENV BOOST_DIR $WORK_ROOT/boost_1_75_0
 WORKDIR $WORK_ROOT
-RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.75.0/source/boost_1_75_0.tar.gz
-RUN tar zxvf boost_1_75_0.tar.gz
-WORKDIR $BOOST_DIR
-RUN ./bootstrap.sh --prefix=$BUILD_PREF
-RUN ./b2 --with-chrono --with-math --with-system install -j"$(nproc)" || :
+RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.75.0/source/boost_1_75_0.tar.gz && \
+  tar zxvf boost_1_75_0.tar.gz && \
+  cd $BOOST_DIR && \
+  ./bootstrap.sh --prefix=$BUILD_PREF && \
+  ./b2 --with-chrono --with-math --with-system install -j"$(nproc)" || :
 
 # to access private repo
 ARG SSH_KEY
-RUN eval "$(ssh-agent -s)"
-RUN mkdir -p /root/.ssh/ && \
-echo "$SSH_KEY" > /root/.ssh/id_rsa && \
-chmod -R 600 /root/.ssh/ && \
-ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+RUN eval "$(ssh-agent -s)" && \
+  mkdir -p /root/.ssh/ && \
+  echo "$SSH_KEY" > /root/.ssh/id_rsa && \
+  chmod -R 600 /root/.ssh/ && \
+  ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 # 3la_sim_testbench
 ENV SIM_TEST_DIR $WORK_ROOT/3la_sim_testbench
 WORKDIR $WORK_ROOT
-RUN git clone --depth=1 --branch extended_spad git@github.com:LeeOHzzZ/3la_sim_testbench.git $SIM_TEST_DIR
-WORKDIR $SIM_TEST_DIR
-RUN git submodule init && \
-    git submodule update tool/numcpp
+RUN git clone --depth=1 --branch extended_spad git@github.com:LeeOHzzZ/3la_sim_testbench.git $SIM_TEST_DIR && \
+  cd $SIM_TEST_DIR && \
+  git submodule init && \
+  git submodule update tool/numcpp
 
 # 3la_ILA_tensor_op
 ENV ILA_TENSOR_OP_DIR $WORK_ROOT/3la_ILA_tensor_op
@@ -346,25 +346,25 @@ WORKDIR /root/tvm
 # Note the --ignore-libllvm, necessary for fixing Rust bindings as mentioned
 # here:
 # https://discuss.tvm.apache.org/t/python-debugger-segfaults-with-tvm/843/9
-RUN echo 'set(USE_LLVM "$ENV{LLVM_CONFIG_PATH} --ignore-libllvm")' >> config.cmake
-RUN echo 'set(USE_RPC ON)' >> config.cmake
-RUN echo 'set(USE_SORT ON)' >> config.cmake
-RUN echo 'set(USE_GRAPH_RUNTIME ON)' >> config.cmake
-RUN echo 'set(USE_BLAS openblas)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake
-RUN echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake
-RUN echo 'set(USE_VTA_FSIM OFF)' >> config.cmake
-RUN echo 'set(USE_ILAVTA_CODEGEN ON)' >> config.cmake
-RUN echo 'set(USE_ILAFLEX_CODEGEN ON)' >> config.cmake
-RUN echo 'set(USE_ILACNN_CODEGEN ON)' >> config.cmake
-#RUN echo 'set(CMAKE_BUILD_TYPE Debug)' >> config.cmake
-#ARG TVM_BUILD_JOBS=2
-RUN bash -c \
+RUN echo 'set(USE_LLVM "$ENV{LLVM_CONFIG_PATH} --ignore-libllvm")' >> config.cmake && \
+  echo 'set(USE_RPC ON)' >> config.cmake && \
+  echo 'set(USE_SORT ON)' >> config.cmake && \
+  echo 'set(USE_GRAPH_RUNTIME ON)' >> config.cmake && \
+  echo 'set(USE_BLAS openblas)' >> config.cmake && \
+  echo 'set(CMAKE_CXX_STANDARD 14)' >> config.cmake && \
+  echo 'set(CMAKE_CXX_STANDARD_REQUIRED ON)' >> config.cmake && \
+  echo 'set(CMAKE_CXX_EXTENSIONS OFF)' >> config.cmake && \
+  echo 'set(USE_VTA_FSIM OFF)' >> config.cmake && \
+  echo 'set(USE_ILAVTA_CODEGEN ON)' >> config.cmake && \
+  echo 'set(USE_ILAFLEX_CODEGEN ON)' >> config.cmake && \
+  echo 'set(USE_ILACNN_CODEGEN ON)' >> config.cmake && \
+  bash -c \
      "mkdir -p build && \
      cd build && \
      cmake .. && \
      make -j$(nproc)"
+#RUN echo 'set(CMAKE_BUILD_TYPE Debug)' >> config.cmake
+#ARG TVM_BUILD_JOBS=2
 
 # Help the system find the libtvm library and TVM Python library
 ENV TVM_HOME=/root/tvm
