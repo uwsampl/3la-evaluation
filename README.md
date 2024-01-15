@@ -1,6 +1,5 @@
 # 3LA PLDI Evaluation
 
-[![Nightly (pipsqueak)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-pipsqueak.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-pipsqueak.yml)
 [![Nightly (GitHub runners)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-github-runners.yml/badge.svg)](https://github.com/uwsampl/3la-pldi-2022-evaluation/actions/workflows/nightly-github-runners.yml)
 
 In accordance with
