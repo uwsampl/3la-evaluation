@@ -22,9 +22,8 @@ All components
     using git submodules.)
 The entire repository
   is built and tested
-  nightly
-  on GitHub's machines
-  and our own.
+  weekly
+  on GitHub's machines.
 
 ## Build and Run
 
