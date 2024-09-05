@@ -289,7 +289,7 @@ ENV LLVM_CONFIG_PATH=/usr/lib/llvm-10/bin/llvm-config
 # Makes weird stuff happen in the LLVM install so leaving until later
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
-RUN curl -s https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+RUN curl -s https://bootstrap.pypa.io/pip/3.7/get-pip.py -o get-pip.py && \
     python get-pip.py --force-reinstall && \
     rm get-pip.py
 
